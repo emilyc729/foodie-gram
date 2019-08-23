@@ -2,8 +2,10 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var commentSchema = new Schema({
-    response: String,
-    required: true
+    response: {
+        type: String,
+        required: true
+    }
 }, {
     timestamps: true
 });
@@ -12,7 +14,6 @@ var postSchema = new Schema({
     photo: {
         data: Buffer,
         contentType: String,
-        required: true
     }, 
     caption: String,
     restaurantName: String,
@@ -33,9 +34,9 @@ var postSchema = new Schema({
     timestamps: true
 });
 
-var userSchema = new Schema({
+var foodieSchema = new Schema({
     name: String,
-    emial: String,
+    email: String,
     avatar: String,
     googleId: String, 
     posts: [postSchema],
@@ -45,4 +46,4 @@ var userSchema = new Schema({
 });
 
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('Foodie', foodieSchema);
