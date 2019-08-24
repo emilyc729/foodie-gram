@@ -3,6 +3,7 @@
     padding: 0;
     margin: 0;
     display: inline-block;
+
 }
 
 #userAvatar {
@@ -11,9 +12,18 @@
     width: 50px;
 }
 
-#identity{
+#identity {
     font-size: 28px;
     padding: 10px 15px;
 
 }
 
+.dropdown-menu {
+    margin-top: 8px;
+}
+
+#postBox {
+    margin-bottom: 10px;
+    border: 1px solid red;
+    padding: 10px;
+}

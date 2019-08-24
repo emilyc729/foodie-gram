@@ -6,6 +6,7 @@ var foodiesCtrl = require('../controllers/foodies');
 router.get('/foodies', foodiesCtrl.index);
 router.get('/foodies/new', isLoggedIn, foodiesCtrl.new);
 router.get('/foodies/my-posts', isLoggedIn, foodiesCtrl.ownPosts);
+router.get('/foodies/profile', isLoggedIn, foodiesCtrl.profile);
 router.post('/foodies', foodiesCtrl.create);
 
 function isLoggedIn(req, res, next) {

@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var fs = require('fs');
 
 var commentSchema = new Schema({
     response: {
@@ -12,6 +13,7 @@ var commentSchema = new Schema({
 
 var postSchema = new Schema({
     photo: {
+        type: String,
         data: Buffer,
         contentType: String,
     }, 

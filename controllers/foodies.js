@@ -3,7 +3,8 @@ module.exports = {
     index,
     create,
     new: newPost,
-    ownPosts
+    ownPosts,
+    profile
 };
 
 function index(req, res, next) {
@@ -23,14 +24,15 @@ function index(req, res, next) {
 function create(req, res, next) {
     req.user.posts.push(req.body);
     req.user.save(function(err) {
+        console.log(req.user);
         if(err) return next(err);
-        res.redirect('foodies');
+        res.redirect('foodies/my-posts');
       });
 
 }
 
 function newPost(req, res, next) {
-    res.render('foodies/new-post');
+    res.render('foodies/new-post', {user: req.user});
 }
 
 function ownPosts(req, res, next) {
@@ -45,4 +47,14 @@ function ownPosts(req, res, next) {
     });
 
    
+}
+
+function profile(req, res, next) {
+    Foodie.findOne({'_id': req.user.id}, function(err, foodie){
+        res.render('foodies/profile', {
+            foodie,
+            user: req.user,
+            name: req.query.name
+        });
+    });
 }

@@ -10,7 +10,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0-11/css/all.min.css">
-    <link rel="stylesheet" href="stylesheets/style.css" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
     <title>Foodie-Gram</title>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -26,28 +26,29 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">FoodieGram</a>
-
-        <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                        <a class="nav-link" href="/foodies">All Posts</a>
-                </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/foodies/my-posts">My Posts</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fas fa-plus"></i> Post</a>
-            </li>
-            <li class="nav-item">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="#">FoodieGram</a>
+        
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/foodies/my-posts">My Posts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/foodies/new"><i class="fas fa-plus"></i> Post</a>
+                    </li>
+                </ul>
                 <div class="btn-group">
-                    <button type="button" class="btn btn-secondary" data-toggle="dropdown" aria-haspopup="true"
+                    <button id="button" type="button" class="btn btn-secondary" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
-                        <span class="navbar-toggler-icon"></span>
+                            <% if(user.avatar) { %>
+                                <img id="userAvatar" src="<%= user.avatar %>">
+                            <% } else { %>
+                                <i id="identity" class="fas fa-user"></i>
+                            <% } %>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="#">My Profile</a>
-                        <a class="dropdown-item" href="/foodies/new-post">My Posts</a>
+                        <a class="dropdown-item" href="/foodies/my-posts">My Posts</a>
                         <a class="dropdown-item" href="#"><i class="fas fa-plus"></i> Post</a>
                         <form class="form-inline my-2 my-lg-0" method="GET" action="/logout">
                             <a class="dropdown-item"><button class="btn btn-outline-success my-2 my-sm-0"
@@ -55,9 +56,7 @@
                         </form>
                     </div>
                 </div>
-            </li>
-        </ul>
-    </nav>
+            </nav>
 
     <div class="jumbotron">
 
@@ -94,6 +93,10 @@
                         <option value="Other">Other</option>
                     </select>
                 </div>
+                <div class="form-group">
+                        <label for="rating">Address:</label>
+                        <input type="text" class="form-control" name="rating" placeholder="scale of 0 - 5">
+                    </div>
                 <button type="submit" class="btn btn-primary">Add Post</button>
             </form>
         </div>

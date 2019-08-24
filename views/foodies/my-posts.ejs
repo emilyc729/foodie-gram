@@ -10,7 +10,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0-11/css/all.min.css">
-    <link rel="stylesheet" href="stylesheets/style.css" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
     <title>Foodie-Gram</title>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -47,9 +47,9 @@
                             <% } %>
                         </button>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="#">My Profile</a>
+                        <a class="dropdown-item" href="/foodies/profile">My Profile</a>
                         <a class="dropdown-item" href="/foodies/my-posts">My Posts</a>
-                        <a class="dropdown-item" href="#"><i class="fas fa-plus"></i> Post</a>
+                        <a class="dropdown-item" href="/foodies/new"><i class="fas fa-plus"></i> Post</a>
                         <form class="form-inline my-2 my-lg-0" method="GET" action="/logout">
                             <a class="dropdown-item"><button class="btn btn-outline-success my-2 my-sm-0"
                                     type="submit">Logout</button></a>
@@ -62,9 +62,19 @@
 
         <h1>My Posts</h1>
         <div class="container">
+
             <% foodie.posts.forEach(function(p) { %>
-                <div><%= p %></div>
+            <div id="postBox">
+                <img src="<%= p.photo %>">
+                <div><%= p.caption %></div>
+                <div><%= p.restaurantName %></div>
+                <div><%= p.restaurantAddr %></div>
+                <div><%= p.cuisine%></div>
+                <div><%= p.createdAt.toLocaleString() %></div>
+                <div><%= p.rating %></div>
+            </div>
             <% }); %>
+       
         </div>
 
   
