@@ -31,7 +31,7 @@
         
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/foodies/my-posts">My Posts</a>
+                        <a class="nav-link" href="/foodies">All Posts</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/foodies/new"><i class="fas fa-plus"></i> Post</a>
@@ -40,15 +40,15 @@
                 <div class="btn-group">
                     <button id="button" type="button" class="btn btn-secondary" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
-                            <% if(user.avatar) { %>
-                                <img id="userAvatar" src="<%= user.avatar %>">
-                            <% } else { %>
-                                <i id="identity" class="fas fa-user"></i>
-                            <% } %>
-                        </button>
+                        <% if(user.avatar) { %>
+                        <img id="userAvatar" src="<%= user.avatar %>">
+                        <% } else { %>
+                        <i id="identity" class="fas fa-user"></i>
+                        <% } %>
+                    </button>
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="/foodies/profile">My Profile</a>
-                        <a class="dropdown-item" href="/foodies/my-posts">My Posts</a>
+                        <a class="dropdown-item" href="/foodies">All Posts</a>
                         <a class="dropdown-item" href="/foodies/new"><i class="fas fa-plus"></i> Post</a>
                         <form class="form-inline my-2 my-lg-0" method="GET" action="/logout">
                             <a class="dropdown-item"><button class="btn btn-outline-success my-2 my-sm-0"

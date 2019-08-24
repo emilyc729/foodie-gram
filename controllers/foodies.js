@@ -26,7 +26,7 @@ function create(req, res, next) {
     req.user.save(function(err) {
         console.log(req.user);
         if(err) return next(err);
-        res.redirect('foodies/my-posts');
+        res.redirect('foodies/profile');
       });
 
 }
