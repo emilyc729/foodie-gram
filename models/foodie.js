@@ -18,7 +18,7 @@ var postSchema = new Schema({
     caption: String,
     restaurantName: String,
     restaurantAddr: String,
-    cuisines: 
+    cuisine: 
     /*[{type: Schema.Types.ObjectId, ref: 'Cuisine'}],*/
     {
         type: String,
