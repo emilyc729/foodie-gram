@@ -1,0 +1,19 @@
+#button {
+    border-radius: 5px;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+}
+
+#userAvatar {
+    display: block;
+    height: 50px;
+    width: 50px;
+}
+
+#identity{
+    font-size: 28px;
+    padding: 10px 15px;
+
+}
+
