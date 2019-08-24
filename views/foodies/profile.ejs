@@ -40,12 +40,12 @@
         <div class="btn-group">
             <button id="button" type="button" class="btn btn-secondary" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
-                    <% if(user.avatar) { %>
-                        <img id="userAvatar" src="<%= user.avatar %>">
-                    <% } else { %>
-                        <i id="identity" class="fas fa-user"></i>
-                    <% } %>
-                </button>
+                <% if(user.avatar) { %>
+                <img id="userAvatar" src="<%= user.avatar %>">
+                <% } else { %>
+                <i id="identity" class="fas fa-user"></i>
+                <% } %>
+            </button>
             <div class="dropdown-menu dropdown-menu-right">
                 <a class="dropdown-item" href="/foodies/profile">My Profile</a>
                 <a class="dropdown-item" href="/foodies/my-posts">My Posts</a>
@@ -60,9 +60,46 @@
 
     <div class="jumbotron">
         <div class="container">
-            <h1>HI GHEE</h1>
-          
+            <div class="card mb-3">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <img src="<%= foodie.avatar %>" class="card-img" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= foodie.name %></h5>
+                            <p class="card-text">Total # Posts: <%= foodie.posts.length %> </p>
+                            <p class="card-text">Total # Comments: <%= foodie.comments.length %></p>
+                            <p class="card-text"><small class="text-muted">Member Since:
+                                    <%= foodie.createdAt.toLocaleDateString() %></small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+        <h1>My Posts</h1>
+
+        <div class="row no-gutter">
+
+            <% foodie.posts.forEach(function(p) { %>
+            <div class="col-md-4">
+                <div class="card">
+                    <img id="foodPic" src="<%= p.photo %>" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= p.caption %></h5>
+                        <p class="card-text"><%= p.restaurantName %></p>
+                        <p class="card-text"><%= p.restaurantAddr %></p>
+                        <p class="card-text"><%= p.cuisine%></p>
+                        <p class="card-text"><%= p.rating %></p>
+                        <p class="card-text"><small class="text-muted">Last updated
+                                <%= p.updatedAt.toLocaleDateString() %></small></p>
+                    </div>
+                </div>
+            </div>
+            <% }); %>
+        </div>
+
+
     </div>
 
 </body>
