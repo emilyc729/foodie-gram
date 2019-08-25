@@ -1,15 +1,18 @@
 const Foodie = require('../models/foodie');
+
 module.exports = {
     index,
     create,
     new: newPost,
     ownPosts,
-    profile
+    profile, 
+    postDetails
 };
 
 function index(req, res, next) {
  
     Foodie.find({}, function(err, foodies) {
+        //foodies.find({''})
         
             res.render('foodies/index', {
                 foodies,
@@ -57,4 +60,18 @@ function profile(req, res, next) {
             name: req.query.name
         });
     });
+}
+
+
+function postDetails(req, res, next) {
+    /*
+    Foodie.findOne(req.params.id, function(err, one) {
+
+        res.render('foodies/details', {
+            onePost, 
+            user: req.user,
+            name: req.query.name
+        });
+    });
+    */
 }

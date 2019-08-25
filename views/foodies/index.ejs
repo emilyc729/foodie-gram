@@ -63,22 +63,24 @@
             <h1>All Posts</h1>
             <div class="row no-gutters">
                 <% foodies.forEach(function(foodie){ %>
-                <% foodie.posts.forEach(function(p) { %>
-                <div class="col-md-4">
-                    <div class="card">
-                        <img id="foodPic" src="<%= p.photo %>" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title"><%= p.caption %></h5>
-                            <p class="card-text"><%= p.restaurantName %></p>
-                            <p class="card-text"><%= p.restaurantAddr %></p>
-                            <p class="card-text"><%= p.cuisine%></p>
-                            <p class="card-text"><%= p.rating %></p>
-                            <p class="card-text"><small class="text-muted">Last updated
-                                    <%= p.updatedAt.toLocaleDateString() %></small></p>
+                    <% foodie.posts.forEach(function(p) { %>
+                    <div class="col-md-4">
+                        <a id="onePost" href="/foodies/<%= p.id %>">
+                        <div class="card">
+                            <img id="foodPic" src="<%= p.photo %>" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title"><%= p.caption %></h5>
+                                <p class="card-text"><%= p.restaurantName %></p>
+                                <p class="card-text"><%= p.restaurantAddr %></p>
+                                <p class="card-text"><%= p.cuisine%></p>
+                                <p class="card-text"><%= p.rating %></p>
+                                <p class="card-text"><small class="text-muted">Last updated
+                                        <%= p.updatedAt.toLocaleDateString() %></small></p>
+                            </div>
                         </div>
+                    </a>
                     </div>
-                </div>
-                <% }); %>
+                    <% }); %>
                 <% }); %>
             </div>
         </div>

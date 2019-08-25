@@ -24,7 +24,8 @@ passport.use(new GoogleStrategy({
                 var newFoodie = new Foodie({
                     name: profile.displayName,
                     email: profile.emails[0].value,
-                    googleId: profile.id
+                    googleId: profile.id,
+                    avatar: profile.photos[0].value
                 });
                 newFoodie.save(function (err) {
                     if (err) return cb(err);
