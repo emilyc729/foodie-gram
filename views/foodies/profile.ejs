@@ -88,7 +88,9 @@
                         <div class="card-body">
                             <h5 class="card-title"><%= p.caption %></h5>
                             <p class="card-text"><%= p.restaurantName %></p>
-                            <p class="card-text"><%= p.cuisine%></p>
+                            <p class="card-text"><%= p.restaurantAddr %></p>
+                            <p class="card-text"><%= p.cuisine %></p>
+                            <p class="card-text"><%= p.rating %></p>
                             <div class="d-flex bd-highlight">
                                 <div class="text-muted mr-auto p-2 bd-highlight"><small>Last updated:
                                     <%= p.updatedAt.toLocaleDateString() %></small></div>
@@ -99,7 +101,7 @@
                                     </form>
 
 
-                                    <form class="p-2 bd-highlight" action="/<%= p.id %>/edit-post" method="POST">
+                                    <form class="p-2 bd-highlight" action="/foodies/<%= p.id %>/edit-post" method="GET">
                                         <button class="btn btn-outline-danger btn-sm" type="submit"><i
                                                 class="fas fa-user-edit"></i></button>
                                     </form>

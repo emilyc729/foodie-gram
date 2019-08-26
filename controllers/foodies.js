@@ -8,7 +8,8 @@ module.exports = {
     profile,
     postDetails,
     deletePost,
-    editPost
+    editPost,
+    updatePost
 };
 
 function index(req, res, next) {
@@ -70,6 +71,7 @@ function profile(req, res, next) {
 
 
 function postDetails(req, res, next) {
+  
     Foodie.find({}, function (err, foodies) {
         foodies.forEach(function (foodie) {
             foodie.posts.forEach(function (onePost) {
@@ -104,9 +106,37 @@ function editPost(req, res, next) {
         foodie.posts.forEach(function (onePost) {
             if (req.params.id === onePost.id) {
                 
-                foodie.save(function(err) {
-                    res.redirect('foodies/profile');
-                });  
+                res.render('foodies/edit-post',{
+                    foodie,
+                    onePost,
+                    user: req.user,
+                    name: req.query.name
+                });
+            }
+        });
+    });
+}
+
+function updatePost(req, res, next) {
+    Foodie.findOne({'_id': req.user.id}, function (err, foodie) {
+        foodie.posts.forEach(function (onePost) {
+            if (req.params.id === onePost.id) {
+                if(req.body.photo != '' || req.body.caption != '' || req.body.restaurantName != '' ||
+                    req.body.restaurantAddr != '' || req.body.cuisine != '' || req.body.rating != '') {
+                        onePost.photo = req.body.photo;
+                        onePost.caption = req.body.caption;
+                        onePost.restaurantName = req.body.restaurantName;
+                        onePost.restaurantAddr = req.body.restaurantAddr;
+                        onePost.cuisine = req.body.cuisine;
+                        onePost.rating = req.body.rating;
+                        foodie.save(function(err) {
+                            res.redirect('foodies/profile');
+                        });
+                } else {
+                    console.log(onePost);
+                }
+                console.log(onePost);
+  
             }
         });
     });
