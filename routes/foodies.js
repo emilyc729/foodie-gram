@@ -11,12 +11,13 @@ router.get('/foodies/profile', isLoggedIn, foodiesCtrl.profile);
 router.get('/foodies/my-posts', isLoggedIn, foodiesCtrl.ownPosts);
 //GET: show one post details
 router.get('/foodies/:id', foodiesCtrl.postDetails);
+router.get('/:id/edit-post', foodiesCtrl.editPost);
 
 //POST: create new post
 router.post('/foodies', foodiesCtrl.create);
 
 //PUT: edit post
-router.put('/:id', foodiesCtrl.editPost);
+//router.put('/:id', foodiesCtrl.updatePost);
 
 //DELETE: remove a post
 router.delete('/:id', foodiesCtrl.deletePost);

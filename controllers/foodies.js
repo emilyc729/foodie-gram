@@ -87,7 +87,6 @@ function postDetails(req, res, next) {
 }
 
 function deletePost(req, res, next) {
-    console.log(req.user);
     Foodie.findOne({'_id': req.user.id}, function (err, foodie) {
         foodie.posts.forEach(function (onePost) {
             if (req.params.id === onePost.id) {
@@ -101,5 +100,14 @@ function deletePost(req, res, next) {
 }
 
 function editPost(req, res, next) {
-    
+    Foodie.findOne({'_id': req.user.id}, function (err, foodie) {
+        foodie.posts.forEach(function (onePost) {
+            if (req.params.id === onePost.id) {
+                
+                foodie.save(function(err) {
+                    res.redirect('foodies/profile');
+                });  
+            }
+        });
+    });
 }
