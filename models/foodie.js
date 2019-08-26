@@ -1,6 +1,5 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var fs = require('fs');
 
 var commentSchema = new Schema({
     response: {

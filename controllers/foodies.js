@@ -7,7 +7,8 @@ module.exports = {
     ownPosts,
     profile,
     postDetails,
-    deletePost
+    deletePost,
+    editPost
 };
 
 function index(req, res, next) {
@@ -97,4 +98,8 @@ function deletePost(req, res, next) {
             }
         });
     });
+}
+
+function editPost(req, res, next) {
+    
 }

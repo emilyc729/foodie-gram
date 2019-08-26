@@ -15,6 +15,9 @@ router.get('/foodies/:id', foodiesCtrl.postDetails);
 //POST: create new post
 router.post('/foodies', foodiesCtrl.create);
 
+//PUT: edit post
+router.put('/:id', foodiesCtrl.editPost);
+
 //DELETE: remove a post
 router.delete('/:id', foodiesCtrl.deletePost);
 

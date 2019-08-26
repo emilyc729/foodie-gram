@@ -9,6 +9,7 @@ passport.use(new GoogleStrategy({
 },
     function (accessToken, refreshToken, profile, cb) {
         // a user has logged in with OAuth...
+        console.log(profile);
         Foodie.findOne({ 'googleId': profile.id }, function (err, foodie) {
             if (err) return cb(err);
             if (foodie) {
@@ -25,7 +26,8 @@ passport.use(new GoogleStrategy({
                     name: profile.displayName,
                     email: profile.emails[0].value,
                     googleId: profile.id,
-                    avatar: profile.photos[0].value
+                    avatar: profile.photos[0].value,
+                    username: profile.name.givenName + profile.name.familyName[0] + profile.id.substring(profile.id.length - 2)
                 });
                 newFoodie.save(function (err) {
                     if (err) return cb(err);
