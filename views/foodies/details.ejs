@@ -63,17 +63,21 @@
             <h1>Post Details</h1>
 
             <div class="card">
-                <img id="foodPic" src="<%= onePost.photo %>" alt="...">
+                <img id="foodPic" src="<%= onePost.photo %>" alt="food image">
                 <div class="card-body">
-                    <h6 class="card-title"><%= foodie.name %>: <small><%= onePost.caption %></small></h6>
-                    <p class="card-text"><%= onePost.restaurantName %></p>
-                    <p class="card-text"><%= onePost.restaurantAddr %></p>
-                    <p class="card-text"><%= onePost.cuisine%></p>
-                    <p class="card-text"><%= onePost.rating %></p>
+                    <h6 class="card-title"><%= foodie.name %>: <small><%= onePost.caption %> caption</small></h6>
+                    <p class="card-text">Restaurant Name: <%= onePost.restaurantName %></p>
+                    <p class="card-text">Restaurant Page: <%= onePost.restaurantAddr %></p>
+                    <p class="card-text">Cuisine: <%= onePost.cuisine%></p>
+                    <p class="card-text">
+                        <% for(let i = 0; i < p.rating; i++) { %>
+                        <span class="star">★</span>
+                        <% } %>
+                    </p>
                     <p class="card-text"><small class="text-muted">Last updated
                             <%= onePost.updatedAt.toLocaleDateString() %></small></p>
-                    <iframe width="600" height="450" frameborder="0" style="border:0"
-                        src="https://www.google.com/maps/embed/v1/place?key=APIKEY&q=<%= onePost.restaurantAddr %>"
+                    <iframe width="500" height="350" frameborder="0" style="border:0"
+                        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBLfL9JlGV1Lj0wkMPIIHrfvlQnQnCAAO8&q=<%= onePost.restaurantAddr %>"
                         allowfullscreen></iframe>
                 </div>
             </div>
@@ -87,8 +91,7 @@
                         <div class="form-group">
                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                         </div>
-                        <button class="btn btn-outline-success my-2 my-sm-0"
-                            type="submit">Comment</button>
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Comment</button>
                     </form>
                 </div>
 

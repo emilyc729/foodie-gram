@@ -15,7 +15,7 @@ module.exports = {
 function index(req, res, next) {
 
     Foodie.find({}, function (err, foodies) {
-        Foodie.findOne({ '_id': req.user.id }, function(err, foodie) {
+        Foodie.findOne({ '_id': req.user.id }, function (err, foodie) {
             res.render('foodies/index', {
                 foodie,
                 foodies,
@@ -39,9 +39,9 @@ function create(req, res, next) {
 function newPost(req, res, next) {
     Foodie.findOne({ '_id': req.user.id }, function (err, foodie) {
         res.render('foodies/new-post', {
-            foodie, 
+            foodie,
             user: req.user,
-            name: req.query.name 
+            name: req.query.name
         });
     });
 }
@@ -71,7 +71,7 @@ function profile(req, res, next) {
 
 
 function postDetails(req, res, next) {
-  
+
     Foodie.find({}, function (err, foodies) {
         foodies.forEach(function (foodie) {
             foodie.posts.forEach(function (onePost) {
@@ -89,24 +89,24 @@ function postDetails(req, res, next) {
 }
 
 function deletePost(req, res, next) {
-    Foodie.findOne({'_id': req.user.id}, function (err, foodie) {
+    Foodie.findOne({ '_id': req.user.id }, function (err, foodie) {
         foodie.posts.forEach(function (onePost) {
             if (req.params.id === onePost.id) {
-                foodie.posts.splice(foodie.posts.indexOf(onePost),1);
-                foodie.save(function(err) {
+                foodie.posts.splice(foodie.posts.indexOf(onePost), 1);
+                foodie.save(function (err) {
                     res.redirect('foodies/profile');
-                });  
+                });
             }
         });
     });
 }
 
 function editPost(req, res, next) {
-    Foodie.findOne({'_id': req.user.id}, function (err, foodie) {
+    Foodie.findOne({ '_id': req.user.id }, function (err, foodie) {
         foodie.posts.forEach(function (onePost) {
             if (req.params.id === onePost.id) {
-                
-                res.render('foodies/edit-post',{
+
+                res.render('foodies/edit-post', {
                     foodie,
                     onePost,
                     user: req.user,
@@ -118,25 +118,21 @@ function editPost(req, res, next) {
 }
 
 function updatePost(req, res, next) {
-    Foodie.findOne({'_id': req.user.id}, function (err, foodie) {
+    Foodie.findOne({ '_id': req.user.id }, function (err, foodie) {
         foodie.posts.forEach(function (onePost) {
             if (req.params.id === onePost.id) {
-                if(req.body.photo != '' || req.body.caption != '' || req.body.restaurantName != '' ||
-                    req.body.restaurantAddr != '' || req.body.cuisine != '' || req.body.rating != '') {
-                        onePost.photo = req.body.photo;
-                        onePost.caption = req.body.caption;
-                        onePost.restaurantName = req.body.restaurantName;
-                        onePost.restaurantAddr = req.body.restaurantAddr;
-                        onePost.cuisine = req.body.cuisine;
-                        onePost.rating = req.body.rating;
-                        foodie.save(function(err) {
-                            res.redirect('foodies/profile');
-                        });
-                } else {
-                    console.log(onePost);
-                }
-                console.log(onePost);
-  
+
+                onePost.photo = req.body.photo != '' ? req.body.photo : onePost.photo;
+                onePost.caption = req.body.caption != '' ? req.body.caption: onePost.caption;
+                onePost.restaurantName = req.body.restaurantName != '' ? req.body.restaurantName : onePost.restaurantName;
+                onePost.restaurantAddr = req.body.restaurantAddr != '' ? req.body.restaurantAddr : onePost.restaurantAddr;;
+                onePost.cuisine = req.body.cuisine != '' ? req.body.cuisine: onePost.cuisine;
+                onePost.rating = req.body.rating != '' ? req.body.rating : onePost.rating;
+                foodie.save(function (err) {
+                    res.redirect('foodies/profile');
+
+
+                });
             }
         });
     });

@@ -97,10 +97,39 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="rating">Rating:</label>
-                        <input type="text" class="form-control" name="rating" placeholder="<%= onePost.rating %>">
-                        <%= onePost.cuisine %>                        </iframe>
-                    </div>
+                            <div class="rating">
+                                <label>
+                                    <input type="radio" name="rating" value="1" />
+                                    <span class="icon">★</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="rating" value="2" />
+                                    <span class="icon">★</span>
+                                    <span class="icon">★</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="rating" value="3" />
+                                    <span class="icon">★</span>
+                                    <span class="icon">★</span>
+                                    <span class="icon">★</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="rating" value="4" />
+                                    <span class="icon">★</span>
+                                    <span class="icon">★</span>
+                                    <span class="icon">★</span>
+                                    <span class="icon">★</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="rating" value="5" />
+                                    <span class="icon">★</span>
+                                    <span class="icon">★</span>
+                                    <span class="icon">★</span>
+                                    <span class="icon">★</span>
+                                    <span class="icon">★</span>
+                                </label>
+                            </div>
+                        </div>
                     <button type="submit" class="btn btn-primary">Update Post</button>
                 </form>
             </div>
