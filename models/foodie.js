@@ -38,6 +38,7 @@ var postSchema = new Schema({
 
 var foodieSchema = new Schema({
     name: String,
+    username: String,
     email: String,
     avatar: String,
     googleId: String, 

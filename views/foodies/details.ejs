@@ -40,8 +40,8 @@
         <div class="btn-group">
             <button id="button" type="button" class="btn btn-secondary" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
-                <% if(user.avatar) { %>
-                <img id="userAvatar" src="<%= user.avatar %>">
+                <% if(foodie.avatar) { %>
+                <img id="userAvatar" src="<%= foodie.avatar %>">
                 <% } else { %>
                 <i id="identity" class="fas fa-user"></i>
                 <% } %>
@@ -62,24 +62,28 @@
         <div class="container">
             <h1>Post Details</h1>
 
-                        <div class="card">
-                            <img id="foodPic" src="<%= onePost.photo %>" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title"><%= onePost.caption %></h5>
-                                <p class="card-text"><%= onePost.restaurantName %></p>
-                                <p class="card-text"><%= onePost.restaurantAddr %></p>
-                                <p class="card-text"><%= onePost.cuisine%></p>
-                                <p class="card-text"><%= onePost.rating %></p>
-                                <p class="card-text"><small class="text-muted">Last updated
-                                        <%= onePost.updatedAt.toLocaleDateString() %></small></p>
-                            </div>
-                        </div>
-         
-                    </div>
-        
+            <div class="card">
+                <img id="foodPic" src="<%= onePost.photo %>" alt="...">
+                <div class="card-body">
+                    <h6 class="card-title"><%= foodie.name %>: <small><%= onePost.caption %></small></h6>
+                    <p class="card-text"><%= onePost.restaurantName %></p>
+                    <p class="card-text"><%= onePost.restaurantAddr %></p>
+                    <p class="card-text"><%= onePost.cuisine%></p>
+                    <p class="card-text"><%= onePost.rating %></p>
+                    <p class="card-text"><small class="text-muted">Last updated
+                            <%= onePost.updatedAt.toLocaleDateString() %></small></p>
+                </div>
+            </div>
+            <div class="card">
+                    <% onePost.comments.forEach(function(c) { %>
+                        <p class="card-text"><%= c %></p>
+                    <% }); %>
+            </div>
+
         </div>
 
     </div>
+
 
 </body>
 

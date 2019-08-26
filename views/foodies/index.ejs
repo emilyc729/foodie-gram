@@ -40,8 +40,8 @@
         <div class="btn-group">
             <button id="button" type="button" class="btn btn-secondary" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
-                <% if(user.avatar) { %>
-                <img id="userAvatar" src="<%= user.avatar %>">
+                <% if(foodie.avatar) { %>
+                <img id="userAvatar" src="<%= foodie.avatar %>">
                 <% } else { %>
                 <i id="identity" class="fas fa-user"></i>
                 <% } %>
@@ -69,7 +69,8 @@
                         <div class="card">
                             <img id="foodPic" src="<%= p.photo %>" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title"><%= p.caption %></h5>
+                                <h6 class="card-title"><%= foodie.name %>: <small><%= p.caption %></small></h6>
+                                
                                 <p class="card-text"><%= p.restaurantName %></p>
                                 <p class="card-text"><%= p.restaurantAddr %></p>
                                 <p class="card-text"><%= p.cuisine%></p>
