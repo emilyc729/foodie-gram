@@ -12,16 +12,13 @@ module.exports = {
 function index(req, res, next) {
 
     Foodie.find({}, function (err, foodies) {
-        foodies.forEach(function(f) {
-            if(f.id === req.user.id) {
-                let foodie = f;
-                res.render('foodies/index', {
-                    foodie,
-                    foodies,
-                    user: req.user,
-                    name: req.query.name
-                });    
-            }
+        Foodie.findOne({ '_id': req.user.id }, function(err, foodie) {
+            res.render('foodies/index', {
+                foodie,
+                foodies,
+                user: req.user,
+                name: req.query.name
+            });
         });
     });
 }
@@ -82,5 +79,4 @@ function postDetails(req, res, next) {
             });
         });
     });
-
 }

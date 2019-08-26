@@ -40,11 +40,14 @@
         <div class="btn-group">
             <button id="button" type="button" class="btn btn-secondary" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
+
                 <% if(foodie.avatar) { %>
-                <img id="userAvatar" src="<%= foodie.avatar %>">
+                <img id="userAvatar" src="<%= user.avatar %>">
                 <% } else { %>
                 <i id="identity" class="fas fa-user"></i>
                 <% } %>
+
+
             </button>
             <div class="dropdown-menu dropdown-menu-right">
                 <a class="dropdown-item" href="/foodies/profile">My Profile</a>
@@ -66,20 +69,20 @@
                     <% foodie.posts.forEach(function(p) { %>
                     <div class="col-md-4">
                         <a id="onePost" href="/foodies/<%= p.id %>">
-                        <div class="card">
-                            <img id="foodPic" src="<%= p.photo %>" alt="...">
-                            <div class="card-body">
-                                <h6 class="card-title"><%= foodie.name %>: <small><%= p.caption %></small></h6>
-                                
-                                <p class="card-text"><%= p.restaurantName %></p>
-                                <p class="card-text"><%= p.restaurantAddr %></p>
-                                <p class="card-text"><%= p.cuisine%></p>
-                                <p class="card-text"><%= p.rating %></p>
-                                <p class="card-text"><small class="text-muted">Last updated
-                                        <%= p.updatedAt.toLocaleDateString() %></small></p>
+                            <div class="card">
+                                <img id="foodPic" src="<%= p.photo %>" alt="...">
+                                <div class="card-body">
+                                    <h6 class="card-title"><%= foodie.name %>: <small><%= p.caption %></small></h6>
+
+                                    <p class="card-text"><%= p.restaurantName %></p>
+                                    <p class="card-text"><%= p.restaurantAddr %></p>
+                                    <p class="card-text"><%= p.cuisine%></p>
+                                    <p class="card-text"><%= p.rating %></p>
+                                    <p class="card-text"><small class="text-muted">Last updated
+                                            <%= p.updatedAt.toLocaleDateString() %></small></p>
+                                </div>
                             </div>
-                        </div>
-                    </a>
+                        </a>
                     </div>
                     <% }); %>
                 <% }); %>
