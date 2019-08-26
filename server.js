@@ -5,6 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session');
 var passport = require('passport');
+//method override
+var methodOverride = require('method-override');
 
 require('dotenv').config();
 
@@ -32,6 +34,9 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
+
+//method override
+app.use(methodOverride('_method'));
 
 app.use('/', indexRouter);
 app.use('/', foodiesRouter);

@@ -66,25 +66,25 @@
             <h1>All Posts</h1>
             <div class="row no-gutters">
                 <% foodies.forEach(function(foodie){ %>
-                    <% foodie.posts.forEach(function(p) { %>
-                    <div class="col-md-4">
-                        <a id="onePost" href="/foodies/<%= p.id %>">
-                            <div class="card">
-                                <img id="foodPic" src="<%= p.photo %>" alt="...">
-                                <div class="card-body">
-                                    <h6 class="card-title"><%= foodie.name %>: <small><%= p.caption %></small></h6>
+                <% foodie.posts.forEach(function(p) { %>
+                <div class="col-md-4">
+                    <a id="onePost" href="/foodies/<%= p.id %>">
+                        <div class="card">
+                            <img id="foodPic" src="<%= p.photo %>" alt="...">
+                            <div class="card-body">
+                                <h6 class="card-title"><%= foodie.name %>: <small><%= p.caption %></small></h6>
 
-                                    <p class="card-text"><%= p.restaurantName %></p>
-                                    <p class="card-text"><%= p.restaurantAddr %></p>
-                                    <p class="card-text"><%= p.cuisine%></p>
-                                    <p class="card-text"><%= p.rating %></p>
-                                    <p class="card-text"><small class="text-muted">Last updated
-                                            <%= p.updatedAt.toLocaleDateString() %></small></p>
-                                </div>
+                                <p class="card-text"><%= p.restaurantName %></p>
+                                <p class="card-text"><%= p.restaurantAddr %></p>
+                                <p class="card-text"><%= p.cuisine%></p>
+                                <p class="card-text"><%= p.rating %></p>
+                                <p class="card-text"><small class="text-muted">Last updated
+                                        <%= p.updatedAt.toLocaleDateString() %></small></p>
                             </div>
-                        </a>
-                    </div>
-                    <% }); %>
+                        </div>
+                    </a>
+                </div>
+                <% }); %>
                 <% }); %>
             </div>
         </div>

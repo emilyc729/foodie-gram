@@ -3,7 +3,7 @@ var router = express.Router();
 var foodiesCtrl = require('../controllers/foodies');
 
 //GET: show all posts
-router.get('/foodies', foodiesCtrl.index);
+router.get('/foodies', isLoggedIn, foodiesCtrl.index);
 //GET: new post page
 router.get('/foodies/new', isLoggedIn, foodiesCtrl.new);
 //GET: show logged in user's post & profile
@@ -16,7 +16,7 @@ router.get('/foodies/:id', foodiesCtrl.postDetails);
 router.post('/foodies', foodiesCtrl.create);
 
 //DELETE: remove a post
-//router.delete('/foodies/:id', isLoggedIn, foodiesCtrl.deletePost);
+router.delete('/:id', foodiesCtrl.deletePost);
 
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) return next();
