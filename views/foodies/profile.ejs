@@ -1,73 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('../partials/header') %>
 
-<head>
 
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0-11/css/all.min.css">
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-    <title>Foodie-Gram</title>
-
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-</head>
-
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">FoodieGram</a>
-
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="/foodies">All Posts</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/foodies/new"><i class="fas fa-plus"></i> Post</a>
-            </li>
-        </ul>
-        <div class="btn-group">
-            <button id="button" type="button" class="btn btn-secondary" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
-                <% if(foodie.avatar) { %>
-                <img id="userAvatar" src="<%= foodie.avatar %>">
-                <% } else { %>
-                <i id="identity" class="fas fa-user"></i>
-                <% } %>
-            </button>
-            <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item" href="/foodies/profile">My Profile</a>
-                <a class="dropdown-item" href="/foodies">All Posts</a>
-                <a class="dropdown-item" href="/foodies/new"><i class="fas fa-plus"></i> Post</a>
-                <form class="form-inline my-2 my-lg-0" method="GET" action="/logout">
-                    <a class="dropdown-item"><button class="btn btn-outline-success my-2 my-sm-0"
-                            type="submit">Logout</button></a>
-                </form>
-            </div>
-        </div>
-    </nav>
-
-    <div class="jumbotron">
-        <div class="container">
-            <div id="profile-card" class="card mb-3">
+        <div class="container-fluid">
+            <div id="profile-card" class="card mb-3 ml-4 mr-4">
                 <div class="row no-gutters">
                     <div class="col-md-4">
-                        <img src="<%= foodie.avatar %>" class="card-img" alt="...">
+                            <i id="identity-profile" class="fas fa-user"></i>
+                        <!--<img src="<%= foodie.avatar %>" class="card-img" alt="profile picture">-->
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
                             <h5 class="card-title"><%= foodie.name %></h5>
+                            <p class="card-text">Username: <%= foodie.username%></p>
                             <p class="card-text"><%= foodie.email%></p>
                             <p class="card-text">Total # Posts: <%= foodie.posts.length %> </p>
                             <p class="card-text">Total # Comments: <%= foodie.comments.length %></p>
@@ -77,23 +21,46 @@
                     </div>
                 </div>
             </div>
-            <h1>My Posts</h1>
+            <h1 class="ml-4">My Posts</h1>
 
             <div class="row no-gutters">
+                    <div class="col-md-12 mb-4 ">
+                            <form class="form-inline my-2 my-lg-0 justify-content-end mr-3">
+                                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                                <button class="btn btn-outline-primary my-2 my-sm-0 mr-5" type="submit">Search</button>
+                      
+                                <select class="custom-select custom-select-md mr-5">
+                                    <option selected hidden>Filter</option>
+                                    <option value="User">User</option>
+                                    <option value="Category">Category</option>
+                                    <option value="Rating">Rating</option>
+                                </select>
+                                <select class="custom-select custom-select-md mr-4">
+                                    <option selected hidden>Sort</option>
+                                    <option value="Date">Date</option>
+                                    <option value="User">User</option>
+                                    <option value="Rating">Rating</option>
+                                </select>
+            
+                            </form>
+                        </div>
 
                 <% foodie.posts.forEach(function(p) { %>
-                <div id="posts" class="col-md-4">
-                    <div class="card">
-                        <img id="foodPic" src="<%= p.photo %>" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title"><%= p.caption %></h5>
-                            <p class="card-text"><%= p.restaurantName %></p>
-                            <p class="card-text"><%= p.restaurantAddr %></p>
-                            <p class="card-text"><%= p.cuisine %></p>
-                            <p class="card-text"><%= p.rating %></p>
-                            <div class="d-flex bd-highlight">
-                                <div class="text-muted mr-auto p-2 bd-highlight"><small>Last updated:
-                                    <%= p.updatedAt.toLocaleDateString() %></small></div>
+                <div id="posts" class="col-md-4 mb-4">
+                    <a id="onePost" href="/foodies/<%= p.id %>">
+                        <div id="my-posts" class="card">
+                            <img id="foodPic" src="<%= p.photo %>" alt="...">
+                            <div class="card-body">
+                                <p class="card-text">
+                                    <% for(let i = 0; i < p.rating; i++) { %>
+                                    <span class="shadow-star">★</span>
+                                    <% } %>
+                                    <button class="btn btn-md"><i class="fas fa-ellipsis-v"></i></button>
+                                </p>
+                                
+                                <div class="d-flex bd-highlight">
+                                    <div class="text-muted mr-auto p-2 bd-highlight"><small>Last updated:
+                                            <%= p.updatedAt.toLocaleDateString() %></small></div>
 
                                     <form class="p-2 bd-highlight" action="/<%= p.id %>?_method=DELETE" method="POST">
                                         <button class="btn btn-outline-danger btn-sm" type="submit"><i
@@ -106,11 +73,12 @@
                                                 class="fas fa-user-edit"></i></button>
                                     </form>
 
-                              
-                            </div>
 
+                                </div>
+
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <% }); %>
             </div>
@@ -118,7 +86,7 @@
 
 
 
-    </div>
+
 
 </body>
 

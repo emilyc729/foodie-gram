@@ -9,7 +9,8 @@ module.exports = {
     postDetails,
     deletePost,
     editPost,
-    updatePost
+    updatePost,
+    addComment
 };
 
 function index(req, res, next) {
@@ -125,7 +126,7 @@ function updatePost(req, res, next) {
                 onePost.photo = req.body.photo != '' ? req.body.photo : onePost.photo;
                 onePost.caption = req.body.caption != '' ? req.body.caption: onePost.caption;
                 onePost.restaurantName = req.body.restaurantName != '' ? req.body.restaurantName : onePost.restaurantName;
-                onePost.restaurantAddr = req.body.restaurantAddr != '' ? req.body.restaurantAddr : onePost.restaurantAddr;;
+                onePost.restaurantAddr = req.body.restaurantAddr != '' ? req.body.restaurantAddr : onePost.restaurantAddr;
                 onePost.cuisine = req.body.cuisine != '' ? req.body.cuisine: onePost.cuisine;
                 onePost.rating = req.body.rating != '' ? req.body.rating : onePost.rating;
                 foodie.save(function (err) {
@@ -134,6 +135,23 @@ function updatePost(req, res, next) {
 
                 });
             }
+        });
+    });
+}
+
+function addComment(req, res, next) {
+
+    Foodie.find({}, function(err, foodies) {
+        foodies.forEach(function(foodie) {
+            foodie.posts.forEach(function(onePost) {
+                if(onePost.id === req.params.id) {
+                    onePost.comments.push(req.body);
+                    console.log(foodie);
+                    foodie.save(function(err){
+                        res.redirect(`/foodies/${req.params.id}`);
+                    });
+                }
+            });
         });
     });
 }

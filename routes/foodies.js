@@ -10,11 +10,13 @@ router.get('/foodies/new', isLoggedIn, foodiesCtrl.new);
 router.get('/foodies/profile', isLoggedIn, foodiesCtrl.profile);
 router.get('/foodies/my-posts', isLoggedIn, foodiesCtrl.ownPosts);
 //GET: show one post details
-router.get('/foodies/:id', foodiesCtrl.postDetails);
+router.get('/foodies/:id', isLoggedIn, foodiesCtrl.postDetails);
 router.get('/foodies/:id/edit-post', foodiesCtrl.editPost);
 
 //POST: create new post
 router.post('/foodies', foodiesCtrl.create);
+//POST: add comment
+router.post('/:id/comments', isLoggedIn, foodiesCtrl.addComment);
 
 //PUT: edit post
 router.put('/:id', foodiesCtrl.updatePost);

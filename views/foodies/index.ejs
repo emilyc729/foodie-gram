@@ -1,99 +1,63 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0-11/css/all.min.css">
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-    <title>Foodie-Gram</title>
-
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-</head>
-
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">FoodieGram</a>
-
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="/foodies">All Posts</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/foodies/new"><i class="fas fa-plus"></i> Post</a>
-            </li>
-        </ul>
-        <div class="btn-group">
-            <button id="button" type="button" class="btn btn-secondary" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
-
-                <% if(foodie.avatar) { %>
-                <img id="userAvatar" src="<%= user.avatar %>">
-                <% } else { %>
-                <i id="identity" class="fas fa-user"></i>
-                <% } %>
+<%- include('../partials/header') %>
 
 
-            </button>
-            <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item" href="/foodies/profile">My Profile</a>
-                <a class="dropdown-item" href="/foodies">All Posts</a>
-                <a class="dropdown-item" href="/foodies/new"><i class="fas fa-plus"></i> Post</a>
-                <form class="form-inline my-2 my-lg-0" method="GET" action="/logout">
-                    <a class="dropdown-item"><button class="btn btn-outline-success my-2 my-sm-0"
-                            type="submit">Logout</button></a>
+
+    <div class="container-fluid">
+        <h1>All Posts</h1>
+        <div class="row no-gutters">
+            <div class="col-md-12 mb-4">
+                <form class="form-inline my-2 my-lg-0 justify-content-end">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-primary my-2 my-sm-0 mr-5" type="submit">Search</button>
+          
+                    <select class="custom-select custom-select-md mr-5">
+                        <option selected hidden>Filter</option>
+                        <option value="User">User</option>
+                        <option value="Category">Category</option>
+                    </select>
+                    <select class="custom-select custom-select-md mr-4">
+                        <option selected hidden>Sort</option>
+                        <option value="Date">Date</option>
+                        <option value="User">User</option>
+                    </select>
+
                 </form>
             </div>
-        </div>
-    </nav>
+            <% foodies.forEach(function(foodie){ %>
+            <% foodie.posts.forEach(function(p) { %>
 
-    <div class="jumbotron">
-        <div class="container">
-            <h1>All Posts</h1>
-            <div class="row no-gutters">
-                <% foodies.forEach(function(foodie){ %>
-                <% foodie.posts.forEach(function(p) { %>
-                <div class="col-md-4">
-                    <a id="onePost" href="/foodies/<%= p.id %>">
-                        <div class="card">
-                            <img id="foodPic" src="<%= p.photo %>" alt="...">
-                            <div class="card-body">
-                                <h6 class="card-title"><%= foodie.username %>: <small><%= p.caption %></small></h6>
+            <div class="col-md-4 mb-4">
 
-                                <p class="card-text"><%= p.restaurantName %></p>
-                                <p class="card-text"><%= p.restaurantAddr %></p>
-                                <p class="card-text"><%= p.cuisine%></p>
-                                <p class="card-text">
-                                        <% for(let i = 0; i < p.rating; i++) { %>
-                                            <span class="star">★</span>
-                                        <% } %>
-                                </p>
-                                <p class="card-text"><small class="text-muted">Last updated
-                                        <%= p.updatedAt.toLocaleDateString() %></small></p>
-                            </div>
+                <a id="onePost" href="/foodies/<%= p.id %>">
+
+                    <div class="card">
+                        <img id="foodPic" src="<%= p.photo %>" class="img-fluid img-thumbnail" alt="Responsive image">
+
+                        <div class="card-body">
+                            <p id="stars-section" class="card-text">
+                                <% for(let i = 0; i < p.rating; i++) { %>
+                                <span class="shadow-star">★</span>
+                                <% } %>
+                            </p>
+                            <h6 class="card-title"><%= foodie.username %>: <%= p.caption %></h6>
+                            <iframe width="400" height="100"
+                                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBLfL9JlGV1Lj0wkMPIIHrfvlQnQnCAAO8&q=<%= p.restaurantAddr %>"
+                                allowfullscreen></iframe>
+
+                            <p class="card-text"><small class="text-muted">Last updated
+                                    <%= p.updatedAt.toLocaleDateString() %></small></p>
                         </div>
-                    </a>
-                </div>
-                <% }); %>
-                <% }); %>
+                    </div>
+                </a>
             </div>
-        </div>
 
+
+            <% }); %>
+            <% }); %>
+        </div>
     </div>
+
+
 
 </body>
 

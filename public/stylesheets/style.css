@@ -1,4 +1,33 @@
+
+body {
+    font-family: 'Karla', sans-serif;
+   
+}
+.navbar {
+    background-color: #efc048;
+    padding: 0 10%;
+    margin-top: 15px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.navbar-brand {
+    color: #605943;
+    font-size: 34px;
+}
+
+.navbar-brand:hover {
+    color: #605943;
+    font-size: 34px;
+}
+
+.fa-home, .fa-plus-square {
+    color: black;
+    font-size: 34px;
+    margin-right: 15px;
+}
 #button {
+   
     border-radius: 5px;
     padding: 0;
     margin: 0;
@@ -6,10 +35,14 @@
 
 }
 
+.btn-group {
+    margin-left: 8px;
+}
+
 #userAvatar {
     display: block;
-    height: 50px;
-    width: 50px;
+    height: 48px;
+    width: 48px;
 }
 
 #identity {
@@ -22,6 +55,12 @@
     margin-top: 8px;
 }
 
+.container-fluid {
+    padding: 3% 10%;
+}
+.col-md-12 {
+    text-align: right;
+}
 #postBox {
     margin-bottom: 10px;
     border: 1px solid red;
@@ -29,30 +68,55 @@
 }
 
 #foodPic {
-    border: 1px solid red;
-    margin: 10px;
+    border-radius: 2px;
+    box-shadow: 0 0 4px grey;
+    padding: 8px;
+    margin: 20px 20px 0 20px;
+    height: 350px;
+    
 }
 
+iframe {
+    display:block;
+    width:100%;
+    border: 1px solid #81827f;
+}
+
+
+.card {
+    border-radius: 0;
+    background-color: #f1f4f4;
+    border: none;
+    margin: 0 10px;
+    
+}
+
+
+
 .card-title, .card-text {
-    margin-bottom: 0;
+    margin-bottom: 10px;
 }
 
 .card-body {
     padding-top: 0;
-   
+    margin-top: 10px;
 }
+
+
 
 #onePost {
     color: black;
     text-decoration: none;
+
+    
 }
+
+
 
 .rating {
     display: inline-block;
     position: relative;
-    height: 50px;
-    line-height: 50px;
-    font-size: 50px;
+    font-size: 20px;
   }
   
   .rating label {
@@ -97,6 +161,7 @@
   .rating label .icon {
     float: left;
     color: transparent;
+    margin-right: 2px;
   }
   
   .rating label:last-child .icon {
@@ -113,6 +178,73 @@
     text-shadow: 0 0 5px #09f;
   }
 
+  #stars-section {
+      text-align: right;
+  }
   .star {
       color: gold;
+      text-align: right;
+      margin: 0;
   }
+
+  .shadow-star {
+    color: gold;
+    text-align: right;
+    margin: 0;
+    text-shadow: 0px 1px 3px rgb(180, 180, 180);
+  }
+
+  form {
+      margin: 0 10px 10px 10px;
+  }
+
+  #comment {
+      padding: 10px;
+  }
+
+  #post-modal {
+      margin: 0 24%;
+  }
+
+#img-place {
+    text-align: center;
+    height: 300px;
+    width: 390px;
+    background-color: lightgrey;
+
+}
+
+#my-posts {
+    background: none;
+}
+
+#my-posts .d-flex {
+    border-bottom: 2px solid rgba(211, 211, 211, 0.664);
+}
+
+#my-posts .card-text {
+    margin: 0 10px;
+}
+
+#post-details {
+    margin: 0 20%;
+}
+
+#post-details img {
+    height: 600px;
+}
+
+.fa-ellipsis-v {
+    color: gold;
+}
+
+#identity-profile {
+    font-size: 250px;
+    margin: 55px 0 55px 110px;
+    color: #949494;
+    
+}
+
+#profile-card .col-md-4 {
+    border: 1px solid #949494;
+}
