@@ -8,6 +8,10 @@ html, body {
     height: auto;
 }
 
+h2 {
+    text-align: center;
+}
+
 .navbar {
     background-color: #efc048;
     padding: 0 10%;
