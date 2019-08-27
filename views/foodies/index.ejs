@@ -2,7 +2,7 @@
 
 
 
-    <div class="container-fluid">
+    <div class="box">
         <h1>All Posts</h1>
         <div class="row no-gutters">
             <div class="col-md-12 mb-4">
@@ -23,6 +23,12 @@
 
                 </form>
             </div>
+
+            
+
+
+
+            
             <% foodies.forEach(function(foodie){ %>
             <% foodie.posts.forEach(function(p) { %>
 
@@ -31,9 +37,11 @@
                 <a id="onePost" href="/foodies/<%= p.id %>">
 
                     <div class="card">
-                        <img id="foodPic" src="<%= p.photo %>" class="img-fluid img-thumbnail" alt="Responsive image">
-
+                      
+                        <img id="foodPic" src="<%= p.photo %>" class="img-fluid" alt="<%= p.caption %>">
+               
                         <div class="card-body">
+                               
                             <p id="stars-section" class="card-text">
                                 <% for(let i = 0; i < p.rating; i++) { %>
                                 <span class="shadow-star">★</span>
@@ -59,6 +67,4 @@
 
 
 
-</body>
-
-</html>
+<%- include('../partials/footer') %>

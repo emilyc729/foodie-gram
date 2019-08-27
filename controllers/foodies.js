@@ -145,6 +145,8 @@ function addComment(req, res, next) {
         foodies.forEach(function(foodie) {
             foodie.posts.forEach(function(onePost) {
                 if(onePost.id === req.params.id) {
+                    foodie.comments.push(req.body);
+                    req.body.username = req.user.username;
                     onePost.comments.push(req.body);
                     console.log(foodie);
                     foodie.save(function(err){

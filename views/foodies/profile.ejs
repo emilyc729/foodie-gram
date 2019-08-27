@@ -1,93 +1,88 @@
 <%- include('../partials/header') %>
+<%- include('../partials/modal') %>
 
 
-        <div class="container-fluid">
-            <div id="profile-card" class="card mb-3 ml-4 mr-4">
-                <div class="row no-gutters">
-                    <div class="col-md-4">
-                            <i id="identity-profile" class="fas fa-user"></i>
-                        <!--<img src="<%= foodie.avatar %>" class="card-img" alt="profile picture">-->
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title"><%= foodie.name %></h5>
-                            <p class="card-text">Username: <%= foodie.username%></p>
-                            <p class="card-text"><%= foodie.email%></p>
-                            <p class="card-text">Total # Posts: <%= foodie.posts.length %> </p>
-                            <p class="card-text">Total # Comments: <%= foodie.comments.length %></p>
-                            <p class="card-text"><small class="text-muted">Member Since:
-                                    <%= foodie.createdAt.toLocaleDateString() %></small></p>
-                        </div>
-                    </div>
-                </div>
+<div class="container-fluid">
+    <div id="profile-card" class="card mb-3 ml-4 mr-4">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <i id="identity-profile" class="fas fa-user"></i>
+                <!--<img src="<%= foodie.avatar %>" class="card-img" alt="profile picture">-->
             </div>
-            <h1 class="ml-4">My Posts</h1>
-
-            <div class="row no-gutters">
-                    <div class="col-md-12 mb-4 ">
-                            <form class="form-inline my-2 my-lg-0 justify-content-end mr-3">
-                                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                                <button class="btn btn-outline-primary my-2 my-sm-0 mr-5" type="submit">Search</button>
-                      
-                                <select class="custom-select custom-select-md mr-5">
-                                    <option selected hidden>Filter</option>
-                                    <option value="User">User</option>
-                                    <option value="Category">Category</option>
-                                    <option value="Rating">Rating</option>
-                                </select>
-                                <select class="custom-select custom-select-md mr-4">
-                                    <option selected hidden>Sort</option>
-                                    <option value="Date">Date</option>
-                                    <option value="User">User</option>
-                                    <option value="Rating">Rating</option>
-                                </select>
-            
-                            </form>
-                        </div>
-
-                <% foodie.posts.forEach(function(p) { %>
-                <div id="posts" class="col-md-4 mb-4">
-                    <a id="onePost" href="/foodies/<%= p.id %>">
-                        <div id="my-posts" class="card">
-                            <img id="foodPic" src="<%= p.photo %>" alt="...">
-                            <div class="card-body">
-                                <p class="card-text">
-                                    <% for(let i = 0; i < p.rating; i++) { %>
-                                    <span class="shadow-star">★</span>
-                                    <% } %>
-                                    <button class="btn btn-md"><i class="fas fa-ellipsis-v"></i></button>
-                                </p>
-                                
-                                <div class="d-flex bd-highlight">
-                                    <div class="text-muted mr-auto p-2 bd-highlight"><small>Last updated:
-                                            <%= p.updatedAt.toLocaleDateString() %></small></div>
-
-                                    <form class="p-2 bd-highlight" action="/<%= p.id %>?_method=DELETE" method="POST">
-                                        <button class="btn btn-outline-danger btn-sm" type="submit"><i
-                                                class="far fa-trash-alt"></i></button>
-                                    </form>
-
-
-                                    <form class="p-2 bd-highlight" action="/foodies/<%= p.id %>/edit-post" method="GET">
-                                        <button class="btn btn-outline-danger btn-sm" type="submit"><i
-                                                class="fas fa-user-edit"></i></button>
-                                    </form>
-
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </a>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title"><%= foodie.name %></h5>
+                    <p class="card-text">Username: <%= foodie.username%></p>
+                    <p class="card-text"><%= foodie.email%></p>
+                    <p class="card-text">Total # Posts: <%= foodie.posts.length %> </p>
+                    <p class="card-text">Total # Comments: <%= foodie.comments.length %></p>
+                    <p class="card-text"><small class="text-muted">Member Since:
+                            <%= foodie.createdAt.toLocaleDateString() %></small></p>
                 </div>
-                <% }); %>
             </div>
         </div>
+    </div>
+    <h1 class="ml-4">My Posts</h1>
 
+    <div class="row no-gutters">
+        <div class="col-md-12 mb-4 ">
+            <form class="form-inline my-2 my-lg-0 justify-content-end mr-3">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-primary my-2 my-sm-0 mr-5" type="submit">Search</button>
 
+                <select class="custom-select custom-select-md mr-5">
+                    <option selected hidden>Filter</option>
+                    <option value="User">User</option>
+                    <option value="Category">Category</option>
+                    <option value="Rating">Rating</option>
+                </select>
+                <select class="custom-select custom-select-md mr-4">
+                    <option selected hidden>Sort</option>
+                    <option value="Date">Date</option>
+                    <option value="User">User</option>
+                    <option value="Rating">Rating</option>
+                </select>
 
+            </form>
+        </div>
 
+        <% foodie.posts.forEach(function(p) { %>
+        <div id="posts" class="col-md-4 mb-4">
+            <a id="onePost" href="/foodies/<%= p.id %>">
+                <div id="my-posts" class="card">
+                    <img id="foodPic" src="<%= p.photo %>" alt="...">
 
-</body>
+                    <div class="card-body">
 
-</html>
+                        <div class="card-text d-flex justify-content-between">
+                            <div>
+                                <% for(let i = 0; i < p.rating; i++) { %>
+                                <span class="shadow-star">★</span>
+                                <% } %>
+                            </div>
+                            <div class="btn-group">
+                                <button class="btn btn-md" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false"><i class="fas fa-ellipsis-v"></i></button>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <form class="p-2 bd-highlight" action="/<%= p.id %>?_method=DELETE" method="POST">
+                                        <button class="dropdown-item btn btn-outline-danger btn-sm" type="submit"><i
+                                                class="far fa-trash-alt"></i> Delete</button>
+                                    </form>
+                                    <form class="p-2 bd-highlight" action="/foodies/<%= p.id %>/edit-post" method="GET">
+                                        <button class="dropdown-item btn btn-outline-danger btn-sm" type="submit"><i
+                                                class="fas fa-user-edit"></i> Edit</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="update" class="text-muted mr-auto p-2 bd-highlight"><small>Last updated:
+                                <%= p.updatedAt.toLocaleDateString() %></small></div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <% }); %>
+    </div>
+</div>
+
+<%- include('../partials/footer') %>
