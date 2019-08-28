@@ -29,7 +29,7 @@
                 <input id="input-size" class="form-control mr-sm-2" type="search" name="foodInfo" placeholder="search restaurant or cuisine" value="<%= foodInfo %>" autocomplete="off">
                 <select class="custom-select custom-select-md mr-4" name="sort">
                         <option value="" selected>Sort</option>
-                        <option name="date" value="createdAt">Date</option>
+                        <option name="date" value="updatedAt">Date</option>
                         <option name="rating" value="rating">Rating</option>
                 </select>
                 <button class="btn btn-outline-primary my-2 my-sm-0 mr-5" type="submit">Query</button>
@@ -79,7 +79,7 @@
                                 </div>
             
                                 <div id="update" class="text-muted mr-auto p-2 bd-highlight">
-                                    <small>Last updated: <%= p.updatedAt.toLocaleDateString() %></small>
+                                    <small>Last updated: <%= p.updatedAt.toLocaleString() %></small>
                                 </div>
             
                             </div>

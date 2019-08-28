@@ -64,8 +64,8 @@ function ownPosts(req, res, next) {
 function profile(req, res, next) {
     console.log(req.query);
     let search = req.query.foodInfo ? new RegExp(req.query.foodInfo, 'i') : '';
-    let sort = req.query.sort || 'createdAt';
-    console.log(typeof sort);
+    let sort = req.query.sort || createdAt;
+    console.log(sort);
     console.log(search);
     let foundPosts = [];
     if (search != '' && sort != '') {
@@ -77,11 +77,11 @@ function profile(req, res, next) {
             });
             if(sort === 'rating') {
                 foundPosts.sort((a,b) => b.rating - a.rating);
-            } else {
-                foundPosts.sort((a,b) => b.createdAt - a.createdAt);
+            } else if(sort === "updatedAt"){
+                foundPosts.sort((a,b) => b.updatedAt - a.updatedAt);
             }
             
-            console.log(foundPosts);
+            //console.log(foundPosts);
             res.render('foodies/profile', {
                 foodie,
                 user: req.user,
@@ -95,11 +95,11 @@ function profile(req, res, next) {
        
             if(sort === 'rating') {
                 foundPosts = foodie.posts.sort((a,b) => b.rating - a.rating);
-            } else {
-                foundPosts = foodie.posts.sort((a,b) => b.createdAt- a.createdAt);
+            } else if(sort === "updatedAt"){
+                foundPosts = foodie.posts.sort((a,b) => b.updatedAt- a.updatedAt);
             }
            
-            console.log(foundPosts + '\n');
+            //console.log(foundPosts + '\n');
             res.render('foodies/profile', {
                 foodie,
                 user: req.user,
@@ -112,9 +112,11 @@ function profile(req, res, next) {
             foodie.posts.forEach(function (onePost, idx) {
                 if (onePost.restaurantName.match(search) || onePost.cuisine.match(search)) {
                     foundPosts.push(onePost);
+                    
                 }
+                foundPosts = foodie.posts.sort((a,b) => b.updatedAt- a.updatedAt);
             });
-            console.log(foundPosts + '\n');
+            //console.log(foundPosts + '\n');
             res.render('foodies/profile', {
                 foodie,
                 user: req.user,

@@ -267,6 +267,10 @@ iframe {
     border: 1px solid #949494;
 }
 
+#profile-card .card-body {
+    padding: 20px;
+    margin-left: 30px;
+}
 #update {
     text-align: right;
     border-bottom: 2px solid rgba(211, 211, 211, 0.664);
