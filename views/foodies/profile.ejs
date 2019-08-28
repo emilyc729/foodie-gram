@@ -5,7 +5,7 @@
     <div id="profile-card" class="card mb-3 ml-4 mr-4">
         <div class="row no-gutters">
             <div class="col-md-4">
-                
+
                 <img src="<%= foodie.avatar %>" class="card-img" alt="profile picture">
             </div>
             <div class="col-md-8">
@@ -46,51 +46,61 @@
         </div>
 
         <% foodie.posts.forEach(function(p) { %>
-        <div id="posts" class="col-md-4 mb-4">
+        <div class="col-md-4 mb-4">
             <a id="onePost" href="/foodies/<%= p.id %>">
                 <div id="my-posts" class="card">
-                    <img id="foodPic" src="<%= p.photo %>" alt="...">
-
-                    <div class="card-body">
-
-                        <div class="card-text d-flex justify-content-between">
-                            <div>
-                                <% for(let i = 0; i < p.rating; i++) { %>
-                                <span class="shadow-star">★</span>
-                                <% } %>
-                            </div>
-                            <div class="btn-group">
-                                <button class="btn btn-md" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false"><i class="fas fa-ellipsis-v"></i></button>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <form class="p-2 bd-highlight" action="/<%= p.id %>?_method=DELETE" method="POST">
-                                        <button class="dropdown-item btn btn-outline-danger btn-sm" type="submit"><i
-                                                class="far fa-trash-alt"></i> Delete</button>
-                                    </form>
-                                    <form class="p-2 bd-highlight" action="/foodies/<%= p.id %>/edit-post" method="GET"></form>
-                                        <button class="dropdown-item btn btn-outline-danger btn-sm" type="submit"><i
-                                                class="fas fa-user-edit"></i> Edit</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="update" class="text-muted mr-auto p-2 bd-highlight"><small>Last updated:
-                                <%= p.updatedAt.toLocaleDateString() %></small></div>
-                    </div>
+                    <img id="foodPic" src="<%= p.photo %>" alt="<%= p.cation %>">
                 </div>
             </a>
+            <div id="my-posts" class="card">
+                <div class="card-body">
+                    <div class="card-text d-flex justify-content-between">
+                        <div>
+                            <% for(let i = 0; i < p.rating; i++) { %>
+                            <span class="shadow-star">★</span>
+                            <% } %>
+                        </div>
+                        <div id="profile-dropdown" class="btn-group">
+
+                            <button class="btn-md" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+                                    class="fas fa-ellipsis-v"></i>
+                            </button>
+
+                            <div class="dropdown-menu dropdown-menu-right">
+                                
+                                    <button class="dropdown-item btn-sm" type="submit" data-toggle="modal" data-target=".update-post-modal">
+                                        <i class="fas fa-user-edit"></i> Edit
+                                    </button>
+                             
+                                <form action="/<%= p.id %>?_method=DELETE" method="POST">
+                                    <button class="dropdown-item btn-sm" type="submit">
+                                        <i class="far fa-trash-alt"></i> Delete
+                                    </button>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div id="update" class="text-muted mr-auto p-2 bd-highlight">
+                        <small>Last updated: <%= p.updatedAt.toLocaleDateString() %></small>
+                    </div>
+
+                </div>
+            </div>
+
         </div>
         <% }); %>
 
     </div>
 </div>
 
-<!--CREATE NEW POST MODAL-->
+<!--UPDATE POST MODAL-->
 
-<div class="modal fade bd-example-modal-lg update-post-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-aria-hidden="true">
-<div class="modal-dialog modal-lg">
-    <div class="modal-content">
+<div class="modal fade bd-example-modal-lg update-post-modal" tabindex="-1" role="dialog"
+    aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
             <nav class="navbar navbar-expand-lg">
                 <a class="navbar-brand" href="#">FoodieGram</a>
             </nav>
@@ -146,8 +156,8 @@ aria-hidden="true">
                     </div>
                     <div class="form-group">
                         <label for="restaurantAddr">Address:</label>
-                        <input type="text" class="form-control" autocomplete="street-address"
-                            name="restaurantAddr" placeholder="1234 Main St">
+                        <input type="text" class="form-control" autocomplete="street-address" name="restaurantAddr"
+                            placeholder="1234 Main St">
                     </div>
                     <div class="form-group">
                         <label for="cuisine">Cuisine:</label>
@@ -171,8 +181,8 @@ aria-hidden="true">
                 </form>
             </div>
 
+        </div>
     </div>
-</div>
 </div>
 
 <%- include('../partials/footer') %>

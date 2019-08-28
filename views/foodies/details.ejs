@@ -19,7 +19,7 @@
                 <p class="card-text"><small class="text-muted">Last updated
                         <%= onePost.updatedAt.toLocaleDateString() %></small></p>
                 <iframe width="500" height="350" frameborder="0" style="border:0"
-                    src="https://www.google.com/maps/embed/v1/place?key=<API-KEY>&q=<%= onePost.restaurantAddr %>"
+                    src="https://www.google.com/maps/embed/v1/place?key=<%= process.env.API_KEY %>&q=<%= onePost.restaurantAddr %>"
                     allowfullscreen></iframe>
             </div>
         </div>
@@ -38,7 +38,7 @@
                         <% } %>
                         <span id="comment" class="card-text"><strong><%= c.username %></strong> <%= c.response %></span>
                     </div>
-                    <div><%= c.createdAt.toLocaleString() %></div>
+                    <div><small><%= c.createdAt.toLocaleString() %></small></div>
                 </form>
 
                 <% }); %>

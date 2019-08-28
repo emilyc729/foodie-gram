@@ -26,8 +26,6 @@
             
 
 
-
-            
             <% foodies.forEach(function(foodie){ %>
             <% foodie.posts.forEach(function(p) { %>
 
@@ -40,19 +38,21 @@
                         <img id="foodPic" src="<%= p.photo %>" class="img-fluid" alt="<%= p.caption %>">
                
                         <div class="card-body">
-                               
-                            <p id="stars-section" class="card-text">
-                                <% for(let i = 0; i < p.rating; i++) { %>
-                                <span class="shadow-star">★</span>
-                                <% } %>
-                            </p>
-                            <h6 class="card-title"><%= foodie.username %>: <%= p.caption %></h6>
+                            <div class="d-flex justify-content-around">
+                                    <p><i class="far fa-comment-alt fa-flip-horizontal"> </i>  <%= p.comments.length %> Comments</p>
+                                    <p id="stars-section" class="card-text">
+                                            <% for(let i = 0; i < p.rating; i++) { %>
+                                            <span class="shadow-star">★</span>
+                                            <% } %>
+                                        </p>
+                            </div>
+                            <h5 class="card-title"><strong><%= foodie.username %>:</strong> <%= p.caption %></h5>
                             <iframe width="400" height="100"
-                                src="https://www.google.com/maps/embed/v1/place?key=<API-KEY>&q=<%= p.restaurantAddr %>"
+                                src="https://www.google.com/maps/embed/v1/place?key=<%= process.env.API_KEY %>&q=<%= p.restaurantAddr %>"
                                 allowfullscreen></iframe>
 
-                            <p class="card-text"><small class="text-muted">Last updated
-                                    <%= p.updatedAt.toLocaleDateString() %></small></p>
+                            <p class="card-text"><small class="text-muted">Posted
+                                    <%= p.createdAt.toLocaleDateString() %></small></p>
                         </div>
                     </div>
                 </a>
