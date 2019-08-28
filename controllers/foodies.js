@@ -15,7 +15,7 @@ module.exports = {
 };
 
 function index(req, res, next) {
-
+    console.log(req.query);
     Foodie.find({}, function (err, foodies) {
         Foodie.findOne({ '_id': req.user.id }, function (err, foodie) {
             res.render('foodies/index', {
@@ -62,11 +62,16 @@ function ownPosts(req, res, next) {
 }
 
 function profile(req, res, next) {
+    console.log(req.query);
+    let search = req.query.restaurant;
+    let sort = req.query.sort;
+    let filter = req.query.filter;
     Foodie.findOne({ '_id': req.user.id }, function (err, foodie) {
         res.render('foodies/profile', {
             foodie,
             user: req.user,
-            name: req.query.name
+            name: req.query.name,
+            restaurant: req.query.restaurant
         });
     });
 }
