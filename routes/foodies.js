@@ -23,6 +23,9 @@ router.put('/:id', foodiesCtrl.updatePost);
 
 //DELETE: remove a post
 router.delete('/:id', foodiesCtrl.deletePost);
+//DELETE: remove a comment
+router.delete('/comments/:id', foodiesCtrl.deleteComment);
+
 
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) return next();

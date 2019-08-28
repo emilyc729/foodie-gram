@@ -27,8 +27,7 @@
             <div class="card-body">
                 <h5 class="card-title">Comments:</h5>
                 <% onePost.comments.forEach(function(c) { %>
-                <form class="p-2 bd-highlight d-flex justify-content-between" action="/comments/<%= c.id %>?_method=DELETE"
-                    method="POST">
+                <form class="p-2 bd-highlight d-flex justify-content-between" action="/comments/<%= c.id %>?_method=DELETE" method="POST">
                     <div>
                         <% if(c.username === user.username) { %>
                         <button class="btn btn-outline-danger btn-sm" type="submit"><i

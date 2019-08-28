@@ -10,7 +10,8 @@ module.exports = {
     deletePost,
     editPost,
     updatePost,
-    addComment
+    addComment,
+    deleteComment
 };
 
 function index(req, res, next) {
@@ -91,9 +92,9 @@ function postDetails(req, res, next) {
 
 function deletePost(req, res, next) {
     Foodie.findOne({ '_id': req.user.id }, function (err, foodie) {
-        foodie.posts.forEach(function (onePost) {
+        foodie.posts.forEach(function (onePost, idx) {
             if (req.params.id === onePost.id) {
-                foodie.posts.splice(foodie.posts.indexOf(onePost), 1);
+                foodie.posts.splice(idx, 1);
                 foodie.save(function (err) {
                     res.redirect('foodies/profile');
                 });
@@ -145,14 +146,40 @@ function addComment(req, res, next) {
         foodies.forEach(function(foodie) {
             foodie.posts.forEach(function(onePost) {
                 if(onePost.id === req.params.id) {
-                    foodie.comments.push(req.body);
                     req.body.username = req.user.username;
                     onePost.comments.push(req.body);
-                    console.log(foodie);
+                    console.log('-------------');
+
                     foodie.save(function(err){
-                        res.redirect(`/foodies/${req.params.id}`);
+                        foodie.comments.push(onePost.comments[onePost.comments.length - 1]);
+                        foodie.save(function(err) {
+                            console.log(foodie.comments);
+                            res.redirect(`/foodies/${req.params.id}`);
+                        });
                     });
                 }
+            });
+        });
+    });
+}
+
+function deleteComment(req, res, next) {
+    Foodie.find({}, function(err, foodies) {
+        foodies.forEach(function(foodie) {
+            foodie.posts.forEach(function(onePost) {
+                onePost.comments.forEach(function(c, idx) {
+                    if(req.params.id === c.id) {
+
+                        onePost.comments.splice(idx,1);
+                        foodie.comments.splice(foodie.comments.indexOf(c),1);
+                        foodie.save(function(err) {
+                            console.log(foodie);
+                            console.log(onePost);
+                            console.log(c);
+                            res.redirect(`/foodies/${onePost.id}`);
+                        });
+                    }
+                });
             });
         });
     });
