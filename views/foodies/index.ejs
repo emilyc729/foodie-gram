@@ -2,25 +2,19 @@
 
 
     <div class="box">
-        <h1>All Posts</h1>
+        <h1 class="ml-3">All Posts</h1>
         <div class="row no-gutters">
             <div class="col-md-12 mb-4">
-                <form class="form-inline my-2 my-lg-0 justify-content-end" action="/foodies" method="GET">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-primary my-2 my-sm-0 mr-5" type="submit">Search</button>
-          
-                    <select class="custom-select custom-select-md mr-5">
-                        <option selected hidden>Filter</option>
-                        <option value="User">User</option>
-                        <option value="Category">Category</option>
-                    </select>
-                    <select class="custom-select custom-select-md mr-4">
-                        <option selected hidden>Sort</option>
-                        <option value="Date">Date</option>
-                        <option value="User">User</option>
-                    </select>
-
-                </form>
+                    <form class="form-inline my-2 my-lg-0 justify-content-end mr-3" action="/foodies" method="GET">
+                        <input id="input-size" class="form-control mr-sm-2" type="search" name="foodInfo" placeholder="search name or cuisine" value="" autocomplete="off">
+                        <select class="custom-select custom-select-md mr-4" name="sort">
+                                <option value="" selected>Sort</option>
+                                <option name="date" value="createdAt">Date</option>
+                                <option name="rating" value="rating">Rating</option>
+                        </select>
+                        <button class="btn btn-outline-primary my-2 my-sm-0 mr-5" type="submit">Query</button>
+                    </form>
+                       
             </div>
 
             
