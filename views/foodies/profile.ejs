@@ -26,23 +26,20 @@
     <div class="row no-gutters">
         <div class="col-md-12 mb-4 ">
             <form class="form-inline my-2 my-lg-0 justify-content-end mr-3" action="/foodies/profile" method="GET">
-                <input class="form-control mr-sm-2" type="search" name="restaurant" placeholder="search restaurant" value="<%= restaurant %>" autocomplete="off">
+                <input id="input-size" class="form-control mr-sm-2" type="search" name="foodInfo" placeholder="search restaurant or cuisine" value="<%= foodInfo %>" autocomplete="off">
                 <select class="custom-select custom-select-md mr-4" name="sort">
                         <option value="" selected>Sort</option>
-                        <option name="date" value="date">Date</option>
+                        <option name="date" value="createdAt">Date</option>
                         <option name="rating" value="rating">Rating</option>
                 </select>
-        
-                <select class="custom-select custom-select-md mr-5" name="filter">
-                        <option value="" selected>Filter</option>
-                        <option name="user" value="user">User</option>
-                        <option name="cuisine" value="cuisine">Cuisine</option>
-                        <option name="rating" value="rating">Rating</option>
-                    </select>
                 <button class="btn btn-outline-primary my-2 my-sm-0 mr-5" type="submit">Find</button>
             </form>
         
-                
+            <select class="custom-select custom-select-md mr-5" name="filter">
+                    <option value="" selected>Filter</option>
+                    <option name="cuisine" value="cuisine">Cuisine</option>
+                    <option name="rating" value="rating">Rating</option>
+                </select>
                
 
         </div>
