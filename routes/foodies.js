@@ -6,7 +6,7 @@ var foodiesCtrl = require('../controllers/foodies');
 router.get('/foodies', isLoggedIn, foodiesCtrl.index);
 //GET: new post page
 router.get('/foodies/new', isLoggedIn, foodiesCtrl.new);
-//GET: show logged in user's post & profile
+//GET: show logged in user's posts & profile
 router.get('/foodies/profile', isLoggedIn, foodiesCtrl.profile);
 router.get('/foodies/my-posts', isLoggedIn, foodiesCtrl.ownPosts);
 //GET: show one post details

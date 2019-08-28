@@ -129,7 +129,7 @@ function updatePost(req, res, next) {
                 onePost.restaurantName = req.body.restaurantName != '' ? req.body.restaurantName : onePost.restaurantName;
                 onePost.restaurantAddr = req.body.restaurantAddr != '' ? req.body.restaurantAddr : onePost.restaurantAddr;
                 onePost.cuisine = req.body.cuisine != '' ? req.body.cuisine: onePost.cuisine;
-                onePost.rating = req.body.rating != '' ? req.body.rating : onePost.rating;
+                onePost.rating = req.body.rating != null ? req.body.rating : onePost.rating;
                 foodie.save(function (err) {
                     res.redirect('foodies/profile');
 

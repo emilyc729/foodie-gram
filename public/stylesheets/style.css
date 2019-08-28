@@ -209,11 +209,27 @@ iframe {
 
 #img-place {
     text-align: center;
-    height: 300px;
-    width: 390px;
+    padding: 30%;
+    width: 100%;
     background-color: lightgrey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
 }
+
+#img-place > input
+{
+    display: none;
+}
+
+#img-place img
+{   
+    width: 100%;
+    padding: 10%;
+    cursor: pointer;
+}
+
 
 #onePost {
     color: black;
