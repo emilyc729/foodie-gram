@@ -76,9 +76,9 @@ function profile(req, res, next) {
                 }
             });
             if(sort === 'rating') {
-                foundPosts.sort((a,b) => a.rating - b.rating);
+                foundPosts.sort((a,b) => b.rating - a.rating);
             } else {
-                foundPosts.sort((a,b) => b.createdAt- a.createdAt);
+                foundPosts.sort((a,b) => b.createdAt - a.createdAt);
             }
             
             console.log(foundPosts);
@@ -94,9 +94,9 @@ function profile(req, res, next) {
         Foodie.findOne({ '_id': req.user.id }, function (err, foodie) {
        
             if(sort === 'rating') {
-                foundPosts = foodie.posts.sort((a,b) => a.rating - b.rating);
+                foundPosts = foodie.posts.sort((a,b) => b.rating - a.rating);
             } else {
-                foundPosts = foodie.posts.sort((a,b) => a.createdAt- b.createdAt);
+                foundPosts = foodie.posts.sort((a,b) => b.createdAt- a.createdAt);
             }
            
             console.log(foundPosts + '\n');
@@ -115,6 +115,15 @@ function profile(req, res, next) {
                 }
             });
             console.log(foundPosts + '\n');
+            res.render('foodies/profile', {
+                foodie,
+                user: req.user,
+                foodInfo: req.query.foodInfo, 
+                foundPosts
+            });
+        });
+    } else {
+        Foodie.findOne({ '_id': req.user.id }, function (err, foodie) {
             res.render('foodies/profile', {
                 foodie,
                 user: req.user,
