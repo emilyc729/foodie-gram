@@ -28,14 +28,14 @@
                 <input id="input-size" class="form-control mr-sm-2" type="search" name="foodInfo" placeholder="search restaurant or cuisine" value="<%= foodInfo %>" autocomplete="off">
                 <select class="custom-select custom-select-md mr-4" name="sort">
                         <option value="" selected>Sort</option>
-                        <option name="date" value="updatedAt">Date</option>
-                        <option name="rating" value="rating">Rating</option>
+                        <option name="date" value="updatedAt">Date &#8593</option>
+                        <option name="rating" value="rating">Rating &#8593</option>
                 </select>
                 <button class="btn btn-outline-primary my-2 my-sm-0 mr-5" type="submit">Query</button>
             </form>
 
         </div>
-
+        
         <% if(foundPosts) { %>
             <% foundPosts.forEach(function(p, idx) { %>
                 <div class="col-md-4 mb-4">
