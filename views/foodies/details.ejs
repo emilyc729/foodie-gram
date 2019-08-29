@@ -1,60 +1,67 @@
 <%- include('../partials/header') %>
+<div id="post-details" class="container-fluid">
+    <h1>Post Details</h1>
 
-<div class="jumbotron">
-    <div id="post-details">
-        <h1>Post Details</h1>
+    <div class="card">
+        <img id="foodPic" src="<%= onePost.photo %>" alt="<%= onePost.caption %>">
+        <div class="card mt-4 pl-5 pr-5">
+            <div class="row no-gutters">
+                <div class="col-md-6">
+                    <div class="card-body">
+                        <p class="card-text star-shadow">
+                            <% for(let i = 0; i < onePost.rating; i++) { %>
+                            <span class="shadow-star">★</span>
+                            <% } %>
+                        </p>
+                        <h5 class="card-title"><strong><%= foodie.username %>: <%= onePost.caption %></strong></h5>
+                        <p class="card-text">Restaurant Name: <%= onePost.restaurantName %></p>
+                        <p class="card-text">Cuisine: <%= onePost.cuisine%></p>
 
-        <div class="card">
-            <img id="foodPic" src="<%= onePost.photo %>" alt="food image">
-            <div class="card-body">
-                <p class="card-text star star-shadow">
-                    <% for(let i = 0; i < onePost.rating; i++) { %>
-                    <span class="shadow-star">★</span>
-                    <% } %>
-                </p>
-                <h5 class="card-title"><strong><%= foodie.username %>: <%= onePost.caption %></strong></h5>
-                <p class="card-text">Restaurant Name: <%= onePost.restaurantName %></p>
-                <p class="card-text">Cuisine: <%= onePost.cuisine%></p>
-
-                <p class="card-text"><small class="text-muted">Last updated
-                        <%= onePost.updatedAt.toLocaleDateString() %></small></p>
-                <iframe width="500" height="350" frameborder="0" style="border:0"
-                    src="https://www.google.com/maps/embed/v1/place?key=<%= process.env.API_KEY %>&q=<%= onePost.restaurantAddr %>"
-                    allowfullscreen></iframe>
+                        <p class="card-text"><small class="text-muted">Last updated
+                                <%= onePost.updatedAt.toLocaleDateString() %></small></p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <iframe frameborder="0"
+                        src="https://www.google.com/maps/embed/v1/place?key=<%= process.env.API_KEY %>&q=<%= onePost.restaurantAddr %>"
+                        allowfullscreen></iframe>
+                </div>
             </div>
         </div>
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Comments:</h5>
-                <% onePost.comments.forEach(function(c) { %>
-                <form class="p-2 bd-highlight d-flex justify-content-between" action="/comments/<%= c.id %>?_method=DELETE" method="POST">
-                    <div>
-                        <% if(c.username === user.username) { %>
-                        <button class="btn btn-outline-danger btn-sm" type="submit"><i
-                                class="far fa-trash-alt"></i></button>
-                        <% } else { %>
-                        <button class="btn btn-outline-danger btn-sm invisible" type="submit"><i
-                                class="far fa-trash-alt"></i></button>
-                        <% } %>
-                        <span id="comment" class="card-text"><strong><%= c.username %></strong> <%= c.response %></span>
-                    </div>
-                    <div><small><%= c.createdAt.toLocaleString() %></small></div>
-                </form>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Comments:</h5>
+            <% onePost.comments.forEach(function(c) { %>
+            <form class="p-2 bd-highlight d-flex justify-content-between" action="/comments/<%= c.id %>?_method=DELETE"
+                method="POST">
+                <div>
+                    <% if(c.username === user.username) { %>
+                    <button class="btn btn-outline-danger btn-sm" type="submit"><i
+                            class="far fa-trash-alt"></i></button>
+                    <% } else { %>
+                    <button class="btn btn-outline-danger btn-sm invisible" type="submit"><i
+                            class="far fa-trash-alt"></i></button>
+                    <% } %>
+                    <span id="comment" class="card-text"><strong><%= c.username %></strong> <%= c.response %></span>
+                </div>
+                <div><small><%= c.createdAt.toLocaleString() %></small></div>
+            </form>
 
-                <% }); %>
-                <form action="/<%= onePost.id %>/comments" method="POST">
-                    <div class="form-group">
-                        <textarea class="form-control" name="response" rows="3"></textarea>
-                    </div>
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Comment</button>
-                </form>
-            </div>
-
+            <% }); %>
+            <form action="/<%= onePost.id %>/comments" method="POST">
+                <div class="form-group">
+                    <textarea class="form-control" name="response" rows="3"></textarea>
+                </div>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Comment</button>
+            </form>
         </div>
 
     </div>
 
 </div>
+
+
 
 
 </body>

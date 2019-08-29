@@ -242,18 +242,25 @@ iframe {
     background: none;
 }
 
-
-
 #my-posts .card-text {
     margin: 0 10px;
 }
-
+#post-details {
+    padding: 2% 25%;
+}
 #post-details .card {
-    background-color: none;
+    background: none;
+}
+
+#post-details iframe {
+    padding-right: 20px;
+    border: 0;
+    height: 100%;
+
 }
 
 #post-details img {
-    height: 500px;
+    height: 600px;
 }
 
 #identity-profile {

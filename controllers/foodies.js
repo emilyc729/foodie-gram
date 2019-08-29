@@ -269,7 +269,6 @@ function deleteComment(req, res, next) {
             foodie.posts.forEach(function (onePost) {
                 onePost.comments.forEach(function (c, idx) {
                     if (req.params.id === c.id) {
-
                         onePost.comments.splice(idx, 1);
                         foodie.comments.splice(foodie.comments.indexOf(c), 1);
                         foodie.save(function (err) {
