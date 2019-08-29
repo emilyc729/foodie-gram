@@ -28,7 +28,7 @@ function index(req, res, next) {
     } else if (search === '' && sort != '') {
         allPostsSortBy(req, res, sort);
     } else if (search !== '' && sort === '') {
-        searchBy(req, res, search);
+        allPostsSearchBy(req, res, search);
     } else { 
         Foodie.find({}, function (err, foodies) {
             Foodie.findOne({ '_id': req.user.id }, function (err, foodie) {
@@ -167,8 +167,6 @@ function profile(req, res, next) {
             });
         });
     }
-
-
 
 }
 
@@ -347,20 +345,21 @@ function allPostsSortBy(req, res, sort) {
 
 function allPostsSearchBy(req, res, search) {
     let foundPosts = [];
-        Foodie.findOne({ '_id': req.user.id }, function (err, foodie) {
+    Foodie.find({}, function(err, foodies) {
+        foodies.forEach(function(foodie) {
             foodie.posts.forEach(function (onePost, idx) {
-                if (onePost.restaurantName.match(search) || onePost.cuisine.match(search)) {
+                if (onePost.restaurantName.match(search) || onePost.cuisine.match(search) || foodie.username.match(search)) {
                     foundPosts.push(onePost);
                 }
 
             });
-
-            console.log(typeof foundPosts);
-            res.render('foodies/profile', {
-                foodie,
+        });
+        console.log(foundPosts + '\n');
+            res.render('foodies/index', {
+                foodies,
                 user: req.user,
                 foodInfo: req.query.foodInfo,
                 foundPosts
             });
-        });
+    });
 }
