@@ -286,3 +286,70 @@ function deleteComment(req, res, next) {
         });
     });
 }
+
+function allPostsSearchAndSort(req, res, search, sort) {
+    let foundPosts = [];
+    Foodie.find({}, function(err, foodies) {
+        foodies.forEach(err, function(foodie) {
+            foodie.posts.forEach(function (onePost, idx) {
+                if (onePost.restaurantName.match(search) || onePost.cuisine.match(search) || foodie.username.match(search)) {
+                    foundPosts.push(onePost);
+                }
+                if (sort === 'rating') {
+                    foundPosts.sort((a, b) => b.rating - a.rating);
+                } else if (sort === 'comments'){
+                    foundPosts.sort((a,b) => b.comments.length - a.comments.length);
+                } else {
+                    foundPosts.sort((a, b) => b.createdAt - a.createdAt);
+                }
+                res.render('foodies/profile', {
+                    foodie,
+                    user: req.user,
+                    foodInfo: req.query.foodInfo,
+                    foundPosts
+                });
+            });
+        });
+    });
+}
+
+function allPostsSortBy(req, res, sort) {
+    let foundPosts = [];
+        Foodie.findOne({ '_id': req.user.id }, function (err, foodie) {
+
+            if (sort === 'rating') {
+                foundPosts = foodie.posts.sort((a, b) => b.rating - a.rating);
+            } else if (sort === 'updatedAt'){
+                foundPosts = foodie.posts.sort((a, b) => b.updatedAt - a.updatedAt);
+            }
+
+            console.log(foundPosts + '\n');
+            res.render('foodies/profile', {
+                foodie,
+                user: req.user,
+                foodInfo: req.query.foodInfo,
+                foundPosts
+            });
+        });
+
+}
+
+function allPostsSearchBy(req, res, search) {
+    let foundPosts = [];
+        Foodie.findOne({ '_id': req.user.id }, function (err, foodie) {
+            foodie.posts.forEach(function (onePost, idx) {
+                if (onePost.restaurantName.match(search) || onePost.cuisine.match(search)) {
+                    foundPosts.push(onePost);
+                }
+
+            });
+
+            console.log(typeof foundPosts);
+            res.render('foodies/profile', {
+                foodie,
+                user: req.user,
+                foodInfo: req.query.foodInfo,
+                foundPosts
+            });
+        });
+}
