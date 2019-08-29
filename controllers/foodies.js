@@ -64,7 +64,7 @@ function ownPosts(req, res, next) {
 function profile(req, res, next) {
     console.log(req.query);
     let search = req.query.foodInfo ? new RegExp(req.query.foodInfo, 'i') : '';
-    let sort = req.query.sort || createdAt;
+    let sort = req.query.sort || 'updatedAt';
     console.log(sort);
     console.log(search);
     let foundPosts = [];
