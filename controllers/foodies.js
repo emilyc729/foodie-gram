@@ -309,14 +309,12 @@ function allPostsSearchAndSort(req, res, search, sort) {
                
             });
         });
-        Foodie.findOne({ '_id': req.user.id }, function (err, foodie) {
-            res.render('foodies/index', {
-                foodie,
-                foodies,
-                user: req.user,
-                foodInfo: req.query.foodInfo,
-                foundPosts
-            });
+  
+        res.render('foodies/index', {
+            foodies,
+            user: req.user,
+            foodInfo: req.query.foodInfo,
+            foundPosts
         });
     });
 }

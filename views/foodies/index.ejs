@@ -26,7 +26,7 @@
 
                 <div class="col-md-4 mb-4">
         
-                        <a id="onePost" href="#" data-toggle="modal" data-target=".post-details-modal-<%= idx %>">
+                        <a id="onePost" href="#" data-toggle="modal" data-target=".post-details-modal-<%= p.id %>">
             
                             <div class="card">
             
@@ -54,7 +54,7 @@
                     </div>
 
         <!--POST DETAILS MODAL-->
-        <div class="modal fade bd-example-modal-lg post-details-modal-<%= idx %>" tabindex="-1" role="dialog"
+        <div class="modal fade bd-example-modal-lg post-details-modal-<%= p.id %>" tabindex="-1" role="dialog"
             aria-labelledby="myLargeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -73,7 +73,11 @@
                                     <span class="shadow-star">★</span>
                                     <% } %>
                                 </p>
+                                <% foodies.forEach(function(foodie){ %>
+                                    <% foundPosts.forEach(function(p, idx) { %>
                                 <h5 class="card-title"><strong><%= foodie.username %>: <%= p.caption %></strong></h5>
+                                    <% }); %>
+                                <% }); %>
                                 <p class="card-text">Restaurant Name: <%= p.restaurantName %></p>
                                 <p class="card-text">Cuisine: <%= p.cuisine%></p>
 
@@ -126,10 +130,9 @@
             <% foodies.forEach(function(foodie){ %>
                 <% foodie.posts.forEach(function(p, idx) { %>
                     
-                 
                         <div class="col-md-4 mb-4">
         
-                                <a id="onePost" href="#" data-toggle="modal" data-target=".post-details-modal-<%= idx %>">
+                                <a id="onePost" data-toggle="modal" data-target=".post-details-modal-<%= p.id %>">
                     
                                     <div class="card">
                     
@@ -155,13 +158,9 @@
                                     </div>
                                 </a>
                             </div>
-                        
-        
-        
-               
-        
+            
                 <!--POST DETAILS MODAL-->
-                <div class="modal fade bd-example-modal-lg post-details-modal-<%= idx %>" tabindex="-1" role="dialog"
+                <div class="modal fade bd-example-modal-lg post-details-modal-<%= p.id %>" tabindex="-1" role="dialog"
                     aria-labelledby="myLargeModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
