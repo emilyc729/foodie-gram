@@ -258,7 +258,7 @@ function addComment(req, res, next) {
                         foodie.comments.push(onePost.comments[onePost.comments.length - 1]);
                         foodie.save(function (err) {
                             console.log(foodie.comments);
-                            res.redirect(`/foodies/${req.params.id}`);
+                            res.redirect(`/foodies`);
                         });
                     });
                 }
@@ -311,6 +311,7 @@ function allPostsSearchAndSort(req, res, search, sort) {
         });
   
         res.render('foodies/index', {
+            
             foodies,
             user: req.user,
             foodInfo: req.query.foodInfo,
