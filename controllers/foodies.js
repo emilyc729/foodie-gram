@@ -25,13 +25,11 @@ function index(req, res, next) {
     
     if (search != '' && sort != '') {
         allPostsSearchAndSort(req, res, search, sort);
-    } 
-    /*
-    else if (search === '' && sort != '') {
-        //sortBy(req, res, sort);
+    } else if (search === '' && sort != '') {
+        allPostsSortBy(req, res, sort);
     } else if (search !== '' && sort === '') {
-        //searchBy(req, res, search);
-    } */else { 
+        searchBy(req, res, search);
+    } else { 
         Foodie.find({}, function (err, foodies) {
             Foodie.findOne({ '_id': req.user.id }, function (err, foodie) {
                 res.render('foodies/index', {
@@ -303,7 +301,7 @@ function allPostsSearchAndSort(req, res, search, sort) {
                         foundPosts.sort((a, b) => b.rating - a.rating);
                     } else if (sort === 'comments'){
                         foundPosts.sort((a,b) => b.comments.length - a.comments.length);
-                    } else {
+                    } else if (sort === 'createdAt') {
                         foundPosts.sort((a, b) => b.createdAt - a.createdAt);
                     }
                
@@ -321,22 +319,29 @@ function allPostsSearchAndSort(req, res, search, sort) {
 
 function allPostsSortBy(req, res, sort) {
     let foundPosts = [];
-        Foodie.findOne({ '_id': req.user.id }, function (err, foodie) {
-
-            if (sort === 'rating') {
-                foundPosts = foodie.posts.sort((a, b) => b.rating - a.rating);
-            } else if (sort === 'updatedAt'){
-                foundPosts = foodie.posts.sort((a, b) => b.updatedAt - a.updatedAt);
-            }
-
-            console.log(foundPosts + '\n');
-            res.render('foodies/profile', {
-                foodie,
-                user: req.user,
-                foodInfo: req.query.foodInfo,
-                foundPosts
-            });
+    Foodie.find({}, function(err, foodies) {
+        foodies.forEach(function(foodie) {
+            foodie.posts.forEach(function(onePost) {
+                foundPosts.push(onePost);
+                if (sort === 'rating') {
+                
+                    foundPosts.sort((a, b) => b.rating - a.rating);
+                    console.log(foundPosts);
+                } else if (sort === 'comments') {
+                    foundPosts.sort((a,b) => b.comments.length - a.comments.length);
+                } else if (sort === 'createdAt') {
+                    foundPosts.sort((a, b) => b.createdAt - a.createdAt);
+                }
+            }); 
         });
+        console.log(foundPosts + '\n');
+        res.render('foodies/index', {
+            foodies,
+            user: req.user,
+            foodInfo: req.query.foodInfo,
+            foundPosts
+        });
+    });
 
 }
 
