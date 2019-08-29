@@ -21,7 +21,7 @@
 
 
         <% if(Object.keys(foundPosts).length != 0) { %>
-
+            
             <% foundPosts.forEach(function(p, idx) { %>
 
                 <div class="col-md-4 mb-4">
@@ -41,7 +41,16 @@
                                             <% } %>
                                         </p>
                                     </div>
-                                    <h5 class="card-title"><strong><%= foodie.username %>:</strong> <%= p.caption %></h5>
+                                    <% foodies.forEach(function(foodie){ %>
+                                       
+                                           <% if(foodie.posts.includes(p)) { %>
+                                            
+                                                <h5 class="card-title"><strong><%= foodie.username %>:</strong> <%= p.caption %></h5>
+                                           
+                                          <% } %>
+                                    <% }); %> 
+                                    
+                                    
                                     <iframe width="400" height="100"
                                         src="https://www.google.com/maps/embed/v1/place?key=<%= process.env.API_KEY %>&q=<%= p.restaurantAddr %>"
                                         allowfullscreen></iframe>
@@ -74,10 +83,13 @@
                                     <% } %>
                                 </p>
                                 <% foodies.forEach(function(foodie){ %>
-                                    <% foundPosts.forEach(function(p, idx) { %>
+                                       
+                                    <% if(foodie.posts.includes(p)) { %>
+                               
                                 <h5 class="card-title"><strong><%= foodie.username %>: <%= p.caption %></strong></h5>
-                                    <% }); %>
-                                <% }); %>
+                                  <% } %>
+                                  <% }); %>
+                              
                                 <p class="card-text">Restaurant Name: <%= p.restaurantName %></p>
                                 <p class="card-text">Cuisine: <%= p.cuisine%></p>
 
@@ -122,8 +134,8 @@
             </div>
         </div>
             <!--END OF MODAL-->
-
             <% }); %>
+           
 
         <% } else { %>
 
