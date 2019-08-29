@@ -16,16 +16,30 @@ module.exports = {
 
 function index(req, res, next) {
     console.log(req.query);
+    let view = 'index';
+    let search = req.query.foodInfo ? new RegExp(req.query.foodInfo, 'i') : '';
+    let sort = req.query.sort || 'createdAt';
+    console.log(sort);
+    console.log(search);
+    let foundPosts = [];
+    if (search != '' && sort != '') {
+        searchAndSort(req, res, search, sort, view);
+    } else if(search === '' && sort != '') {
+        sortBy(req, res, sort, view);
+    } else if(search !== '' && sort === '') {
+        searchBy(req, res, search, view);
+    } else {
     Foodie.find({}, function (err, foodies) {
         Foodie.findOne({ '_id': req.user.id }, function (err, foodie) {
             res.render('foodies/index', {
                 foodie,
                 foodies,
                 user: req.user,
-                name: req.query.name
+                foundPosts
             });
         });
     });
+}
 }
 
 function create(req, res, next) {
@@ -61,70 +75,102 @@ function ownPosts(req, res, next) {
 
 }
 
+function searchAndSort(req, res, search, sort, view) {
+    let foundPosts = [];
+    Foodie.find({}, function (err, foodies) {
+    Foodie.findOne({ '_id': req.user.id }, function (err, foodie) {
+        foodie.posts.forEach(function (onePost, idx) {
+            if (onePost.restaurantName.match(search) || onePost.cuisine.match(search) || foodie.username.match(search)) {
+                foundPosts.push(onePost);
+            }
+        });
+        if(sort === 'rating') {
+            foundPosts.sort((a,b) => b.rating - a.rating);
+        } else if(sort === "updatedAt"){
+            foundPosts.sort((a,b) => b.updatedAt - a.updatedAt);
+        } else if (sort === "createdAt") {
+            foundPosts.sort((a,b) => b.updatedAt - a.updatedAt);
+        } else if (sort === "comments") {
+            foundPosts.sort((a,b) => (b.comments.length - a.comments.length));
+        }
+        
+        //console.log(foundPosts);
+        res.render(`foodies/${view}`, {
+            foodies,
+            foodie,
+            user: req.user,
+            foodInfo: req.query.foodInfo, 
+            foundPosts
+        });
+    });
+});
+}
+
+function sortBy(req, res, sort, view) {
+    let foundPosts = [];
+    Foodie.find({}, function (err, foodies) {
+    Foodie.findOne({ '_id': req.user.id }, function (err, foodie) {
+       
+        if(sort === 'rating') {
+            foundPosts = foodie.posts.sort((a,b) => b.rating - a.rating);
+        } else if(sort === "updatedAt"){
+            foundPosts = foodie.posts.sort((a,b) => b.updatedAt- a.updatedAt);
+        } else if (sort === "createdAt") {
+            foundPosts.sort((a,b) => b.updatedAt - a.updatedAt);
+        } else if (sort === "comments") {
+            foundPosts.sort((a,b) => (b.comments.length - a.comments.length));
+        }
+       
+        //console.log(foundPosts + '\n');
+        res.render(`foodies/${view}`, {
+            foodies,
+            foodie,
+            user: req.user,
+            foodInfo: req.query.foodInfo,
+            foundPosts
+        });
+    });
+});
+}
+
+function searchBy(req, res, search, view) {
+    let foundPosts = [];
+    Foodie.find({}, function (err, foodies) {
+    Foodie.findOne({ '_id': req.user.id }, function (err, foodie) {
+        foodie.posts.forEach(function (onePost, idx) {
+            if (onePost.restaurantName.match(search) || onePost.cuisine.match(search) || foodie.username.match(search)) {
+                foundPosts.push(onePost);      
+            }
+            
+        });
+        //console.log(foundPosts + '\n');
+        res.render(`foodies/${view}`, {
+            foodies,
+            foodie,
+            user: req.user,
+            foodInfo: req.query.foodInfo, 
+            foundPosts
+        });
+    });
+});
+}
+
 function profile(req, res, next) {
     console.log(req.query);
+    let view = 'profile';
     let search = req.query.foodInfo ? new RegExp(req.query.foodInfo, 'i') : '';
     let sort = req.query.sort || 'updatedAt';
     console.log(sort);
     console.log(search);
     let foundPosts = [];
     if (search != '' && sort != '') {
-        Foodie.findOne({ '_id': req.user.id }, function (err, foodie) {
-            foodie.posts.forEach(function (onePost, idx) {
-                if (onePost.restaurantName.match(search) || onePost.cuisine.match(search)) {
-                    foundPosts.push(onePost);
-                }
-            });
-            if(sort === 'rating') {
-                foundPosts.sort((a,b) => b.rating - a.rating);
-            } else if(sort === "updatedAt"){
-                foundPosts.sort((a,b) => b.updatedAt - a.updatedAt);
-            }
-            
-            //console.log(foundPosts);
-            res.render('foodies/profile', {
-                foodie,
-                user: req.user,
-                foodInfo: req.query.foodInfo, 
-                foundPosts
-            });
-        });
-        
+        searchAndSort(req, res, search, sort, view);
     } else if(search === '' && sort != '') {
-        Foodie.findOne({ '_id': req.user.id }, function (err, foodie) {
-       
-            if(sort === 'rating') {
-                foundPosts = foodie.posts.sort((a,b) => b.rating - a.rating);
-            } else if(sort === "updatedAt"){
-                foundPosts = foodie.posts.sort((a,b) => b.updatedAt- a.updatedAt);
-            }
-           
-            //console.log(foundPosts + '\n');
-            res.render('foodies/profile', {
-                foodie,
-                user: req.user,
-                foodInfo: req.query.foodInfo, 
-                foundPosts
-            });
-        });
+        sortBy(req, res, sort, view);
     } else if(search !== '' && sort === '') {
-        Foodie.findOne({ '_id': req.user.id }, function (err, foodie) {
-            foodie.posts.forEach(function (onePost, idx) {
-                if (onePost.restaurantName.match(search) || onePost.cuisine.match(search)) {
-                    foundPosts.push(onePost);
-                    
-                }
-                foundPosts = foodie.posts.sort((a,b) => b.updatedAt- a.updatedAt);
-            });
-            //console.log(foundPosts + '\n');
-            res.render('foodies/profile', {
-                foodie,
-                user: req.user,
-                foodInfo: req.query.foodInfo, 
-                foundPosts
-            });
-        });
+        searchBy(req, res, search, view);
     } else {
+        console.log(foundPosts);
         Foodie.findOne({ '_id': req.user.id }, function (err, foodie) {
             res.render('foodies/profile', {
                 foodie,
@@ -134,6 +180,8 @@ function profile(req, res, next) {
             });
         });
     }
+
+    
   
 }
 
