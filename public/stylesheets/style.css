@@ -105,6 +105,11 @@ iframe {
 
 }
 
+#foodPic:hover {
+    opacity: 0.5;
+    background-color: #efc048;
+}
+
 .card-title, .card-text {
     margin-bottom: 10px;
 }
@@ -266,6 +271,13 @@ iframe {
 #post-details img {
     height: 600px;
 }
+#post-details img:hover {
+   
+    opacity:1.0;
+    background-color: white;
+
+}
+
 
 #identity-profile {
     font-size: 250px;
@@ -322,6 +334,19 @@ iframe {
 #input-size {
   width: 20%;
 }
+
+.login img {
+    position: relative; 
+    width: 100%
+}
+
+
+ .login h2 { 
+    position: absolute; 
+    top: 45%; 
+    left: 0; 
+    width: 100%; 
+ }
 
 
 @media only screen and (max-width: 1520px) {
