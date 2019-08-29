@@ -18,18 +18,20 @@ function index(req, res, next) {
     console.log(req.query);
 
     let search = req.query.foodInfo ? new RegExp(req.query.foodInfo, 'i') : '';
-    let sort = req.query.sort || 'createdAt';
+    let sort = req.query.sort || '';
     console.log(sort);
     console.log(search);
     let foundPosts = [];
-    /*
+    
     if (search != '' && sort != '') {
-        //searchAndSort(req, res, search, sort);
-    } else if (search === '' && sort != '') {
+        allPostsSearchAndSort(req, res, search, sort);
+    } 
+    /*
+    else if (search === '' && sort != '') {
         //sortBy(req, res, sort);
     } else if (search !== '' && sort === '') {
         //searchBy(req, res, search);
-    } else { */
+    } */else { 
         Foodie.find({}, function (err, foodies) {
             Foodie.findOne({ '_id': req.user.id }, function (err, foodie) {
                 res.render('foodies/index', {
@@ -40,7 +42,7 @@ function index(req, res, next) {
                 });
             });
         });
-   // }
+    }
 }
 
 function create(req, res, next) {
@@ -290,24 +292,30 @@ function deleteComment(req, res, next) {
 function allPostsSearchAndSort(req, res, search, sort) {
     let foundPosts = [];
     Foodie.find({}, function(err, foodies) {
-        foodies.forEach(err, function(foodie) {
-            foodie.posts.forEach(function (onePost, idx) {
-                if (onePost.restaurantName.match(search) || onePost.cuisine.match(search) || foodie.username.match(search)) {
-                    foundPosts.push(onePost);
-                }
-                if (sort === 'rating') {
-                    foundPosts.sort((a, b) => b.rating - a.rating);
-                } else if (sort === 'comments'){
-                    foundPosts.sort((a,b) => b.comments.length - a.comments.length);
-                } else {
-                    foundPosts.sort((a, b) => b.createdAt - a.createdAt);
-                }
-                res.render('foodies/profile', {
-                    foodie,
-                    user: req.user,
-                    foodInfo: req.query.foodInfo,
-                    foundPosts
-                });
+        foodies.forEach(function(foodie) {
+            foodie.posts.forEach(function(onePost) {
+                    
+                    if (onePost.restaurantName.match(search) || onePost.cuisine.match(search) || foodie.username.match(search)) {
+                        console.log(onePost);
+                        foundPosts.push(onePost);
+                    }
+                    if (sort === 'rating') {
+                        foundPosts.sort((a, b) => b.rating - a.rating);
+                    } else if (sort === 'comments'){
+                        foundPosts.sort((a,b) => b.comments.length - a.comments.length);
+                    } else {
+                        foundPosts.sort((a, b) => b.createdAt - a.createdAt);
+                    }
+               
+            });
+        });
+        Foodie.findOne({ '_id': req.user.id }, function (err, foodie) {
+            res.render('foodies/index', {
+                foodie,
+                foodies,
+                user: req.user,
+                foodInfo: req.query.foodInfo,
+                foundPosts
             });
         });
     });
