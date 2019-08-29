@@ -29,7 +29,7 @@
             </div>
         </div>
     </div>
-    <div class="card">
+    <div class="card comments">
         <div class="card-body">
             <h5 class="card-title">Comments:</h5>
             <% onePost.comments.forEach(function(c) { %>
@@ -43,13 +43,13 @@
                     <button class="btn btn-outline-danger btn-sm invisible" type="submit"><i
                             class="far fa-trash-alt"></i></button>
                     <% } %>
-                    <span id="comment" class="card-text"><strong><%= c.username %></strong> <%= c.response %></span>
+                    <span id="comment" class="card-text"><%= c.response %></span>
                 </div>
-                <div><small><%= c.createdAt.toLocaleString() %></small></div>
+                <div><small class="text-muted">(<%= c.createdAt.toLocaleString() %>)</small><small class="mr-5"> by <strong><%= c.username %> </strong></small></div>
             </form>
 
             <% }); %>
-            <form action="/<%= onePost.id %>/comments" method="POST">
+            <form class="mr-5 ml-5" action="/<%= onePost.id %>/comments" method="POST">
                 <div class="form-group">
                     <textarea class="form-control" name="response" rows="3"></textarea>
                 </div>

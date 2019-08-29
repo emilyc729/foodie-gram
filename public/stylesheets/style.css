@@ -259,6 +259,10 @@ iframe {
 
 }
 
+.comments {
+    margin: 2% 8%
+}
+
 #post-details img {
     height: 600px;
 }
