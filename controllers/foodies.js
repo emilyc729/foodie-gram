@@ -1,4 +1,6 @@
 const Foodie = require('../models/foodie');
+var formidable = require("formidable");
+var fs = require("fs");
 
 module.exports = {
     index,
@@ -15,12 +17,10 @@ module.exports = {
 };
 
 function index(req, res, next) {
-    console.log(req.query);
 
     let search = req.query.foodInfo ? new RegExp(req.query.foodInfo, 'i') : '';
     let sort = req.query.sort || '';
-    console.log(sort);
-    console.log(search);
+
     let foundPosts = [];
     
     if (search != '' && sort != '') {
@@ -44,12 +44,21 @@ function index(req, res, next) {
 }
 
 function create(req, res, next) {
-    req.user.posts.push(req.body);
-    req.user.save(function (err) {
-        console.log(req.user);
-        if (err) return next(err);
-        res.redirect('foodies/profile');
+    var form = new formidable.IncomingForm();
+    form.parse(req, function(error, fields, files) {
+        console.log(files);
+        fs.writeFileSync(`public/images/${files.photo.name}`, fs.readFileSync(files.photo.path));
+        req.body.photo = `/images/${files.photo.name}`;
+        req.user.posts.push(req.body);
+        req.user.save(function (err) {
+            console.log(req.user);
+            if (err) return next(err);
+            res.redirect('foodies/profile');
+        });
     });
+    
+    
+    
 
 }
 
@@ -220,9 +229,11 @@ function editPost(req, res, next) {
 }
 
 function updatePost(req, res, next) {
+    
     Foodie.findOne({ '_id': req.user.id }, function (err, foodie) {
         foodie.posts.forEach(function (onePost) {
             if (req.params.id === onePost.id) {
+                
 
                 onePost.photo = req.body.photo != '' ? req.body.photo : onePost.photo;
                 onePost.caption = req.body.caption != '' ? req.body.caption : onePost.caption;

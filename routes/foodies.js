@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var foodiesCtrl = require('../controllers/foodies');
 
+
 //GET: show all posts
 router.get('/foodies', isLoggedIn, foodiesCtrl.index);
 //GET: new post page
