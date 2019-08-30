@@ -222,9 +222,7 @@ iframe {
     align-items: center;
 
 }
-#plus, #preview {
-    position: absolute;
-}
+
 #plus {
     margin: 100% 0;
     z-index: 2;
