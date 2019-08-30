@@ -225,8 +225,15 @@ iframe {
 
 #plus {
     margin: 100% 0;
+    position: absolute;
 }
 
+#preview {
+    position: relative;
+      top: 0;
+      left: 0;
+
+}
 #img-place > input
 {
     display: none;
