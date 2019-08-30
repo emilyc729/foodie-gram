@@ -8,6 +8,6 @@ function readURL(input) {
                 .attr('style', `background-image: url('${e.target.result}'); background-size: cover; background-repeat: no-repeat;`);
         };
 
-        reader.readAsDataURL(input.target.files[0]);
+        reader.readAsDataURL(input.files[0]);
     }
 }
