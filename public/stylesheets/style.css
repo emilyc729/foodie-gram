@@ -227,7 +227,7 @@ iframe {
     margin: 100% 0;
 }
 
-#file-input
+#img-place > input
 {
     display: none;
     
