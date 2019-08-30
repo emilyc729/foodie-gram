@@ -212,34 +212,46 @@ iframe {
       margin: 0 24%;
   }
 
-#img-place {
-    text-align: center;
+  .form-group {
+	text-align: center;
     
     width: 100%;
-    background-color: lightgrey;
+    
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 0;
-    position: relative;
 }
+#img-place {
+ position: relative;
+ z-index: -2;
+ height: 200px;
+ width: 200px;
+ background-color: yellow;
 
-#plus, #preview {
-    position: absolute;
-}
-
-#plus {
-    
-    z-index: 2;
-    top: 50%;
-    left: 25%;
-    
+ 
 }
 #preview {
-    z-index: 1;
-    top: 50%;
-    left: 25%;
+  position: absolute;
+  left: 25%;
+  top: 25%;
+  z-index: 0;
+   height: 100px;
+ width: 100px;
+  background-color: blue;
+
 }
+#plus {
+ position: absolute;
+ z-index: 1;
+ left: 38%;
+  top: 38%;
+  z-index: 0;
+   height: 50px;
+ width: 50px;
+  background-color: pink;
+ 
+}
+
 
 
 #img-place > input
