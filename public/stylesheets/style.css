@@ -229,7 +229,7 @@ iframe {
 
 #img-place > input
 {
- 
+    display: none;
     
 }
 
