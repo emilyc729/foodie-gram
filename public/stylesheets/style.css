@@ -221,6 +221,7 @@ iframe {
     justify-content: center;
     align-items: center;
     z-index: 0;
+
 }
 
 #plus, #preview {
@@ -228,12 +229,16 @@ iframe {
 }
 
 #plus {
-    margin: 100% 0;
+    
     z-index: 2;
+    top: 50%;
+    left: 25%;
     
 }
 #preview {
     z-index: 1;
+    top: 50%;
+    left: 25%;
 }
 
 
