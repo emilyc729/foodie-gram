@@ -225,7 +225,6 @@ function editPost(req, res, next) {
 }
 
 function updatePost(req, res, next) {
-
     Foodie.findOne({ '_id': req.user.id }, function (err, foodie) {
         foodie.posts.forEach(function (onePost) {
             if (req.params.id === onePost.id) {
