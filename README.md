@@ -22,7 +22,7 @@ FoodieGram is a MEAN App! It is a web application for people who like to share t
 
 ## Game Screenshots
 ![Front Page](https://i.imgur.com/H4QSCdy.jpg)
-![All Posts Page](https://i.imgur.com/LAIEfbKt.png)
+![All Posts Page](https://i.imgur.com/LAIEfbK.png)
 ![Profile Page](https://i.imgur.com/ieYbWIr.png)
 ![Create Post](https://i.imgur.com/N8oqMka.png)
 ![Update Post](https://i.imgur.com/VOXkIaN.png)
