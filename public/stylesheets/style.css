@@ -221,7 +221,7 @@ iframe {
     justify-content: center;
     align-items: center;
     z-index: 0;
-
+    position: relative;
 }
 
 #plus, #preview {
