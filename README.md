@@ -2,23 +2,23 @@
 FoodieGram is a MEAN App! It is a web application for people who like to share their foodie experiences and explore delicious restaurants in their areas. We celebrate the joys of eating and sharing food! By using OAuth, MongdoDB/Mongoose, and implementing CRUD functions using Express, foodies can:
 1. Login/Logout of FoodieGram using Google
 2. View posts from all users:
-...- Click an image to see more details about a post
-...- See an approximate location of where the food is from
-...- Search and/or sort all posts
+- Click an image to see more details about a post
+- See an approximate location of where the food is from
+- Search and/or sort all posts
 3. Create a post:
-...- Upload an image
-...- Rate your experience
-...- Food caption/experience
-...- Provide address, restaurant name
+- Upload an image
+- Rate your experience
+- Food caption/experience
+- Provide address, restaurant name
 4. View a post's details:
-...- Comment on post
-...- Delete own comment
+- Comment on post
+- Delete own comment
 5. View own profile:
-...- See user info: name, username, email, # posts, # comments
-...- See all own posts
-...- Edit a post
-...- Delete a post
-...- Search and/or sort all posts
+- See user info: name, username, email, # posts, # comments
+- See all own posts
+- Edit a post
+- Delete a post
+- Search and/or sort all posts
 
 ## Game Screenshots
 ![Front Page](https://i.imgur.com/H4QSCdy.jpg)
