@@ -21,25 +21,30 @@ FoodieGram is a MEAN App! It is a web application for people who like to share t
 - Search and/or sort all posts
 
 ## Game Screenshots
+1. Front Page
 ![Front Page](https://i.imgur.com/H4QSCdy.jpg)
+2. All Posts
 ![All Posts Page](https://i.imgur.com/LAIEfbK.png)
+3. Profile
 ![Profile Page](https://i.imgur.com/ieYbWIr.png)
+4. Create Post
 ![Create Post](https://i.imgur.com/N8oqMka.png)
+5. Update Post
 ![Update Post](https://i.imgur.com/VOXkIaN.png)
+6. Post Details
 ![Post Details](https://i.imgur.com/2AoijdS.png)
 
 ## Technologies Used
 1. HTML5
 2. CSS3
 3. JavaScript
-4. jQuery
-5. Node.js
-6. Express
-7. MongoDB, MongoDB Atlas
-8. Mongoose
-9. Heroku
-10. Bootstrap
-11. Third Party API
+4. Node.js
+5. Express
+6. MongoDB, MongoDB Atlas
+7. Mongoose
+8. Heroku
+9. Bootstrap
+10. Third Party API
 
 ## Getting Started
 ### Link
@@ -48,7 +53,7 @@ Upload and share your food experiences at
 Now! 
 
 ### Instructions:
-- Hover over and click and image to see more details
+- Hover over and click an image to see more details
 - Please be nice while using FoodieGram...Enjoy! (: 
 
 ## Next Steps:
