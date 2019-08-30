@@ -212,46 +212,20 @@ iframe {
       margin: 0 24%;
   }
 
-  .form-group {
-	text-align: center;
+#img-place {
+    text-align: center;
     
     width: 100%;
-    
+    background-color: lightgrey;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-#img-place {
- position: relative;
- z-index: 0;
-height: 100%;
- width: 100%;
- background-color: yellow;
-
- 
-}
-#preview {
-  position: absolute;
-
-  top: 25%;
-  z-index: 1;
-   height: 100px;
- width: 100%;
-  background-color: blue;
 
 }
+
 #plus {
- position: absolute;
- z-index: 2;
- left: 38%;
-  top: 38%;
-   height: 50px;
- width: 50px;
-  background-color: pink;
- 
+    margin: 100% 0;
 }
-
-
 
 #img-place > input
 {
@@ -259,7 +233,7 @@ height: 100%;
     
 }
 
-#img-place > img
+#img-place img
 {   
     width: 100%;
       flex: 1;

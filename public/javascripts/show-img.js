@@ -4,10 +4,10 @@ function readURL(input) {
 
         reader.onload = function (e) {
             console.log(e.target.result);
-            $('#preview')
-                .attr('src', e.target.result);
+            $('#img-place')
+                .attr('style', `background-image: url('${e.target.result}'); background-size: cover; background-repeat: no-repeat;`);
         };
 
         reader.readAsDataURL(input.files[0]);
     }
-}
+} 
