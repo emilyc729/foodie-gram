@@ -228,9 +228,10 @@ iframe {
     z-index: 2;
     
 }
-#preview-box {
+#preview {
     z-index: 1;
 }
+
 
 #img-place > input
 {
