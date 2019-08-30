@@ -176,7 +176,7 @@ iframe {
   
   .rating:not(:hover) label input:checked ~ .icon,
   .rating:hover label:hover input ~ .icon {
-    color: gold
+    color: gold;
   }
   
   .rating label input:focus:not(:checked) ~ .icon:last-child {
@@ -341,15 +341,25 @@ iframe {
 
 .login img {
     position: relative; 
-    width: 100%
+    width: 100%;
+    opacity: 0.60;
+    filter: brightness(80%);
 }
 
 
  .login h2 { 
+    font-family: 'Londrina Outline', cursive;
     position: absolute; 
-    top: 45%; 
+    top: 38%; 
     left: 0; 
-    width: 100%; 
+    width: 100%;
+   
+    font-size: 60px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    line-height: 100px;
+    color: #efc048;
+    text-shadow: 0 0 4px black;
  }
 
 
