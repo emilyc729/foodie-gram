@@ -4,7 +4,7 @@ function readURL(input) {
 
         reader.onload = function (e) {
             console.log(e.target.result);
-            $('#preview')
+            $('#plus')
                 .attr('src', e.target.result);
         };
 
