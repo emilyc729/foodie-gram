@@ -223,6 +223,10 @@ iframe {
     z-index: 0;
 }
 
+#plus, #preview {
+    position: absolute;
+}
+
 #plus {
     margin: 100% 0;
     z-index: 2;
