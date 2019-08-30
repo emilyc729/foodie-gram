@@ -44,7 +44,7 @@ FoodieGram is a MEAN App! It is a web application for people who like to share t
 ## Getting Started
 ### Link
 Upload and share your food experiences at
-[FoodieGram](https://ec-foodiegram.heroku.com)
+[FoodieGram](https://ec-foodiegram.herokuapp.com)
 Now! 
 
 ### Instructions:

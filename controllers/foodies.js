@@ -228,9 +228,6 @@ function updatePost(req, res, next) {
     Foodie.findOne({ '_id': req.user.id }, function (err, foodie) {
         foodie.posts.forEach(function (onePost) {
             if (req.params.id === onePost.id) {
-
-
-                onePost.photo = req.body.photo != '' ? req.body.photo : onePost.photo;
                 onePost.caption = req.body.caption != '' ? req.body.caption : onePost.caption;
                 onePost.restaurantName = req.body.restaurantName != '' ? req.body.restaurantName : onePost.restaurantName;
                 onePost.restaurantAddr = req.body.restaurantAddr != '' ? req.body.restaurantAddr : onePost.restaurantAddr;
