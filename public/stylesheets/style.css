@@ -222,10 +222,16 @@ iframe {
     align-items: center;
 
 }
-
+#plus, #preview {
+    position: absolute;
+}
 #plus {
     margin: 100% 0;
-  
+    z-index: 2;
+    
+}
+#preview {
+    z-index: 1;
 }
 
 #img-place > input
@@ -234,7 +240,7 @@ iframe {
     
 }
 
-#img-place img
+#img-place > img
 {   
     width: 100%;
       flex: 1;
