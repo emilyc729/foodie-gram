@@ -26,7 +26,7 @@ FoodieGram is a MEAN App! It is a web application for people who like to share t
 2. All Posts
 ![All Posts Page](https://i.imgur.com/LAIEfbK.png)
 3. Profile
-![Profile Page](https://i.imgur.com/ieYbWIr.png)
+![Profile Page](https://i.imgur.com/ItJ1Fiw.png)
 4. Create Post
 ![Create Post](https://i.imgur.com/N8oqMka.png)
 5. Update Post
