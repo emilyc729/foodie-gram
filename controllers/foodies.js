@@ -69,7 +69,6 @@ function newPost(req, res, next) {
 }
 
 function ownPosts(req, res, next) {
-    console.log(req.user.name);
     Foodie.findOne({ '_id': req.user.id }, function (err, foodie) {
         res.render('foodies/my-posts', {
             foodie,
@@ -95,7 +94,6 @@ function profileSearchAndSort(req, res, search, sort) {
             foundPosts.sort((a, b) => b.updatedAt - a.updatedAt);
         }
 
-        //console.log(foundPosts);
         res.render('foodies/profile', {
             foodie,
             user: req.user,
@@ -116,7 +114,6 @@ function profileSortBy(req, res, sort) {
             foundPosts = foodie.posts.sort((a, b) => b.updatedAt - a.updatedAt);
         }
 
-        console.log(foundPosts + '\n');
         res.render('foodies/profile', {
             foodie,
             user: req.user,
@@ -136,8 +133,6 @@ function profileSearchBy(req, res, search) {
             }
 
         });
-
-        console.log(typeof foundPosts);
         res.render('foodies/profile', {
             foodie,
             user: req.user,
@@ -148,13 +143,11 @@ function profileSearchBy(req, res, search) {
 }
 
 function profile(req, res, next) {
-    console.log(req.query);
+
     let search = req.query.foodInfo ? new RegExp(req.query.foodInfo, 'i') : '';
     let sort = req.query.sort || '';
-    console.log(sort);
-    console.log(search);
     let foundPosts = [];
-    console.log(typeof foundPosts);
+
     if (search != '' && sort != '') {
         profileSearchAndSort(req, res, search, sort);
     } else if (search === '' && sort != '') {
@@ -162,7 +155,7 @@ function profile(req, res, next) {
     } else if (search !== '' && sort === '') {
         profileSearchBy(req, res, search);
     } else {
-        console.log(typeof foundPosts);
+
         Foodie.findOne({ '_id': req.user.id }, function (err, foodie) {
             res.render('foodies/profile', {
                 foodie,
