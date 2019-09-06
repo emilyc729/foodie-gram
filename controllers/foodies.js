@@ -244,12 +244,9 @@ function addComment(req, res, next) {
                 if (onePost.id === req.params.id) {
                     req.body.username = req.user.username;
                     onePost.comments.push(req.body);
-                    console.log('-------------');
-
                     foodie.save(function (err) {
                         foodie.comments.push(onePost.comments[onePost.comments.length - 1]);
                         foodie.save(function (err) {
-                            console.log(foodie.comments);
                             res.redirect(`/foodies/${req.params.id}`);
                         });
                     });
@@ -268,9 +265,6 @@ function deleteComment(req, res, next) {
                         onePost.comments.splice(idx, 1);
                         foodie.comments.splice(foodie.comments.indexOf(c), 1);
                         foodie.save(function (err) {
-                            console.log(foodie);
-                            console.log(onePost);
-                            console.log(c);
                             res.redirect(`/foodies/${onePost.id}`);
                         });
                     }
@@ -287,7 +281,6 @@ function allPostsSearchAndSort(req, res, search, sort) {
             foodie.posts.forEach(function (onePost) {
 
                 if (onePost.restaurantName.match(search) || onePost.cuisine.match(search) || foodie.username.match(search)) {
-                    console.log(onePost);
                     foundPosts.push(onePost);
                 }
                 if (sort === 'rating') {
@@ -317,9 +310,7 @@ function allPostsSortBy(req, res, sort) {
             foodie.posts.forEach(function (onePost) {
                 foundPosts.push(onePost);
                 if (sort === 'rating') {
-
                     foundPosts.sort((a, b) => b.rating - a.rating);
-                    console.log(foundPosts);
                 } else if (sort === 'comments') {
                     foundPosts.sort((a, b) => b.comments.length - a.comments.length);
                 } else if (sort === 'createdAt') {
@@ -327,7 +318,6 @@ function allPostsSortBy(req, res, sort) {
                 }
             });
         });
-        console.log(foundPosts + '\n');
         res.render('foodies/index', {
             foodies,
             user: req.user,
@@ -349,7 +339,6 @@ function allPostsSearchBy(req, res, search) {
 
             });
         });
-        console.log(foundPosts + '\n');
         res.render('foodies/index', {
             foodies,
             user: req.user,
