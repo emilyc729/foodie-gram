@@ -20,7 +20,7 @@ FoodieGram is a MEAN App! It is a web application for people who like to share t
 - Delete a post
 - Search and/or sort all posts
 
-## Game Screenshots
+## Screenshots
 1. Front Page
 ![Front Page](https://i.imgur.com/H4QSCdy.jpg)
 2. All Posts
