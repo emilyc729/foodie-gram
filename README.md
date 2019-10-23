@@ -44,7 +44,8 @@ FoodieGram is a MEAN App! It is a web application for people who like to share t
 7. Mongoose
 8. Heroku
 9. Bootstrap
-10. Third Party API
+10. Google Maps API
+11. OAuth
 
 ## Getting Started
 ### Link
